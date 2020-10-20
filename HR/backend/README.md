@@ -1,5 +1,12 @@
 # Installation
-```pip install -r requirements.txt```
+```shell
+$ pip install -r requirements.txt
+```
+
+# Running
+```shell
+$ flask run
+```
 
 # Environmental variables
 
