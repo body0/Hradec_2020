@@ -21,7 +21,7 @@ semafor
 - POSTGRES_PASSWORD=zvikackaJeVecna
 
 - DB_USER=apiUser
-- DB_PASSWORD=KVpNLrA9z4n95RpNH0Cm5uwy8vCCPOaz 
+- DB_PASSWORD=jw8s0F5 
 
 - DB_HOST=144.91.111.198:5432
 - DB_NAME=covid
