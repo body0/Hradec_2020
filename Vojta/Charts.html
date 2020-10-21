@@ -15,14 +15,12 @@
         ]);
 
         var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+          legend: { position: 'none' }
+              };
 
 var chart = new google.charts.Line(document.getElementById('linechart_material'));
 
-chart.draw(data, google.charts.Line.convertOptions(options));
+chart.draw(data, options);
 }
   </script>
 </head>
