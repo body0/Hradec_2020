@@ -1,0 +1,59 @@
+version: "3.0"
+
+services:
+  hradec_db: 
+    container_name: 'hradec_db'
+    restart: unless-stopped
+    build: ./db
+    networks:
+      - hradec_localhost_infrastructure_net
+    expose:
+      - '5432'
+    ports:
+      - 5432:5432
+    env_file:
+      - ./env/rootDBcredentials.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
+  hradec_api:
+    container_name: 'hradec_api'
+    depends_on:
+      - hradec_db
+    restart: unless-stopped
+    build: ./apiService
+    networks:
+      - hradec_localhost_infrastructure_net
+    environment:
+      - PORT=3102
+      - DB_HOST=hradec_db
+      - DB_NAME=covid
+    expose:
+      - '4000'
+    ports:                       #TEST# 
+      - 4400:4000                #TEST# 
+    env_file:
+      - ./env/secrets.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: 500M
+  hradec_nginx:
+      container_name: 'hradec_nginx'
+      depends_on: 
+        - hradec_api
+      restart: unless-stopped
+      build: ./nginx
+      expose:                       
+        - '3101'                 
+      ports: 
+        - 3101:3101 
+      networks:
+        - jopka_localhost_infrastructure_net
+
+networks:
+  jopka_localhost_infrastructure_net:
+      
