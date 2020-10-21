@@ -46,10 +46,11 @@
         z-index: 5;
       }
     </style>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2W0Vw4sTjRortHkmPg-G4qcTRWkjazAQ&libraries=visualization"></script>
     <script>
       // This example requires the Visualization library. Include the libraries=visualization
       // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+    
       let map, heatmap;
 
       function initMap() {
@@ -60,9 +61,11 @@
           zoomControl: true,
           streetViewControl: false,
           Fullscreencontrol: false, 
+          
         });
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
+        
           map: map,
         });
       }
@@ -78,24 +81,7 @@
       function getPoints() {
         return [
           new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-          new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
-           new google.maps.LatLng(37.782551, -122.445368),
+       
         ];
       }
     </script>
