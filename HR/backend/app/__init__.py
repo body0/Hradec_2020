@@ -14,4 +14,4 @@ app.config.from_object(Config)
 db_session = scoped_session(sessionmaker(bind=engine))
 
 
-from app import routes, models
+from app import routes, models, prediction
