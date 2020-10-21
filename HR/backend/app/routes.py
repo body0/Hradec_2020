@@ -20,6 +20,7 @@ def query(name):
     print(cases_prev, r_pred)
     pes_pred = pessimistic_prediction(cases_prev, r_pred)
     opt_pred = optimistic_prediction(cases_prev, r_pred)
+    print(pes_pred, opt_pred)
 
     cf0 = []
     curr = cases_now.aktualne_nemocnych
