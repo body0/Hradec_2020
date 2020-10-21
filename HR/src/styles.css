@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+html, body { 
+    height: 100%;
+    margin: 0; 
+}
+body { 
+    background-color: #012B3F; 
+    font-family: Dosis, Roboto, "Helvetica Neue", sans-serif;
+    overscroll-behavior: contain;
+    --header: #022231;
+    --backgroundTop: #044360;
+    --backgroudBottom: #012B3F;
+    --backgroundWarn: #F44336;
+    /* --backgroundSec: #ebc000; */
+    --backgroundSec: #F49A0B;
+    --backgroundBackAlt: #039BE5;
+ }
