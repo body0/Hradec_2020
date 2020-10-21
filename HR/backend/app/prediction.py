@@ -3,7 +3,7 @@ optimistic_index = 0.9
 
 
 def calculate_R(infection):
-    num_of_input_days = 7
+    num_of_input_days = len(infection)
     AllR = 0
 
     for i in range(num_of_input_days - 1):
