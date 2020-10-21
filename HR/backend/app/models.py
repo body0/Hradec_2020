@@ -1,17 +1,9 @@
-from app import db
+from app import Base
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
+class Population(Base):
+    __table__ = Base.metadata.tables['populace']
 
-    def __repr__(self):
-        return '<User {}>'.format(self.username)
 
-    def serialize(self):
-        return {
-                'id': self.id,
-                'name': self.username,
-                'email': self.email
-        }
+class Cases(Base):
+    __table__ = Base.metadata.tables['pripady']

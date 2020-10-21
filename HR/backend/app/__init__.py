@@ -1,16 +1,17 @@
 from flask import Flask
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session, sessionmaker, Query, relationship, backref
 from config import Config
+
+engine = create_engine(Config.DB_URL, convert_unicode=True, echo=False)
+Base = declarative_base()
+Base.metadata.reflect(engine)
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-manager = Manager(app)
+db_session = scoped_session(sessionmaker(bind=engine))
 
-manager.add_command('db', MigrateCommand)
 
 from app import routes, models
