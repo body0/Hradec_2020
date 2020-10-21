@@ -4,6 +4,8 @@ num_of_input_days = 7
 days_to_predict = 3
 optimistic_index = 0.9
 
+#calculating AllR 
+
 for i in  range(num_of_input_days - 1):
     new = infection[i]
     old = infection[i + 1]
@@ -19,10 +21,14 @@ for i in  range(num_of_input_days - 1):
 
 NumberR = AllR / (num_of_input_days - 1)
 
+#pessimistic prediction
+
 pessimistic_prediction = [infection[0] * NumberR]
 
 for i in range(days_to_predict):
     pessimistic_prediction.append(pessimistic_prediction[i] * NumberR)
+
+#optimistic prediction
 
 optimistic_prediction = [infection[0] * NumberR]
 
