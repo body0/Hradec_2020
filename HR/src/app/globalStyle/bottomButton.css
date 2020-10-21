@@ -1,0 +1,21 @@
+.absoluteHeader {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    height: 3.5rem;
+    min-width: 3.5rem;
+    border-radius: 3.5rem;
+    background: var(--yLight);
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    /* box-shadow: 2px 2px 0px 0px var(--backgroudBottom); */
+    box-shadow: 4x 4px 10px 0px #555;
+    border: solid 1px var(--backgroudBottom);
+}
+.absoluteHeader > .material-icons {
+    font-size: 2.7rem;
+    color: var(--backgroudBottom);
+}

@@ -1,0 +1,121 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.info > p {
+    font-size: 1.3rem;
+    color: #444;
+    margin: .5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.info > p > span:not(.description) {
+    margin-left: 1rem;
+    margin-top: .2rem;
+    display: flex;
+}
+.info > p > span:not(.description) >  .material-icons {
+    margin-right: .5rem;
+}
+.info > p > .description {
+    font-size: .9rem;
+}
+
+.info > mat-divider {
+    width: 100%;
+}
+.mainGraf {
+    margin-top: 2rem;
+}
+
+.legend {
+    padding: .8rem .5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center
+}
+.legend > div {
+    font-size: .9rem;
+    color: #555;
+    display: flex;
+    margin: .4rem 0;
+}
+.legendColor {
+    height: 1em;
+    width: 1em;
+    border-radius: .3em;
+    margin-right: .5em;
+
+}
+
+.bigNumber {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.bigNumber > .bigPart {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bigNumber > .bigPart > .material-icons {
+    font-size: 4rem;
+    margin-right: .2em;
+}
+.bigNumber > .smallPart {
+    font-size: 1.7rem;
+    margin-top: 1.2rem;
+    font-weight: 100;
+}
+.gragName {
+    font-size: .9rem;
+    color: #555;
+}
+
+
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    background: var(--header);
+    color: white;
+}
+mat-toolbar > div {
+    display: flex;
+    align-items: center;    
+}
+mat-toolbar > div > * {
+    margin: 0 .3rem; 
+}
+.floatingContent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.searchIcon {
+    color: var(--backgroundSec);
+}
+
+.input {
+    font-size: 18px;
+    padding: 0;
+    display: block;
+    border: none;
+    background: var(--header);
+   /*  border-bottom: 1px solid white; */
+    color: white;
+    max-width: 0;
+    transition: max-width .75s ease-out;
+}
+input:focus { 
+    outline:none;
+    border-bottom: 2px solid white;
+    max-width: 1000px;
+    padding: 10px 10px 10px 5px;
+ }
