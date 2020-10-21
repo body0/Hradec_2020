@@ -11,7 +11,6 @@ def pos_to_city(lat, lng):
         return "Pracujeme na tom"
     string = string[0].split()
     string.pop(0)
-    return string.join()
+    return(" ".join(string))
 
-
-# print(pos_to_city(48.858093, 2.294694))
+print(pos_to_city(50.587286, 15.156801))
