@@ -4,12 +4,10 @@ from app.models import Population, Cases
 from datetime import date, datetime, timedelta
 from app.prediction import calculate_R, pessimistic_prediction,\
      optimistic_prediction, days_to_predict
+from app.conv import pos_to_city
 
 
-@app.route('/api', methods=["POST"])
-def query_records():
-    json_data = request.json
-    name = json_data['name']
+def query(name):
     pop = db_session.query(Population).filter_by(nazev_obce=name)
     city = pop.first()
     today = datetime(2020, 10, 21)
@@ -37,7 +35,7 @@ def query_records():
         cf1.append({"date": today + timedelta(days=i+1),
                     "valueAbsolute": curr,
                     "valueRelative": inc})
-    # print(r_pred, pes_pred, opt_pred)
+
     return jsonify({
         "name": city.nazev_obce,
         "population": city.obyv_celkem,
@@ -52,9 +50,18 @@ def query_records():
     })
 
 
-def access_data(coords):
-    pass
+@app.route('/api/by-name', methods=["POST"])
+def query_by_name():
+    json_data = request.json
+    name = json_data['name']
+    return query(name)
 
 
-def name_to_coords(name):
-    pass
+@app.route('/api/by-location', methods=["POST"])
+def query_by_location():
+    json_data = request.json
+    lat = json_data["lat"]
+    lng = json_data["lng"]
+    city = pos_to_city(lat, lng)
+    print(city)
+    return query(city)
