@@ -15,4 +15,10 @@ body {
     /* --backgroundSec: #ebc000; */
     --backgroundSec: #F49A0B;
     --backgroundBackAlt: #039BE5;
+    --yLight: #f7b955;
+ }
+
+ .gmnoprint{
+    right: x;
+    left: 0;
  }

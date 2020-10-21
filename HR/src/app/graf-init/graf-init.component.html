@@ -1,3 +1,205 @@
-<p>
-  graf-init works!
-</p>
+<!-- <div class="floatingSlpit">
+  <div class="floating">
+    <h2 class="floatingHeader">Position</h2>
+    <div class="info">
+      <p>
+        <span class="description">Obec:</span>
+        <span>
+          <span class="material-icons">business</span>
+          <span>{{Confinig.name}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">Nakazeni:</span>
+        <span style="color: var(--backgroundWarn)">
+          <span class="material-icons">coronavirus</span>
+          <span>{{Confinig.curent}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">Nakazeni na 100:</span>
+        <span style="color: var(--backgroundWarn)">
+          <span class="material-icons">coronavirus</span>
+          <span>{{Confinig.curentPer}}%</span>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="floating">
+    <h2 class="floatingHeader">Position</h2>
+    <div class="info">
+      <p>
+        <span class="description">Populace:</span>
+        <span>
+          <span class="material-icons">perm_identity</span>
+          <span>{{Confinig.population}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">Nove nakazeni</span>
+        <span style="color: var(--backgroundWarn)">
+          <span class="material-icons">addchart</span>
+          <span>+{{Confinig.increse}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">R faktor:</span>
+        <span>
+          <span class="material-icons">
+            trending_up
+          </span>
+          <span>{{Confinig.multiplicationFactor}}</span>
+          <span class="material-icons" style="font-weight: bold; margin-left: 1rem;" [ngStyle]="{color: WarningColor}">
+            error_outline
+          </span>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="floatingSlpit">
+  <div class="floating">
+    <h2 class="floatingHeader">Graph</h2>
+    <div>
+      <div class="mainGraf" #grafMain></div>
+      <div class="legend">
+        <div>
+          <div class="legendColor" style="background: #F4B400"></div>
+          <span>Aktualini vyvoj</span>
+        </div>
+        <div>
+          <div class="legendColor" style="background: #DB4437"></div>
+          <span>Pesimisticka predpoved</span>
+        </div>
+        <div>
+          <div class="legendColor" style="background: #4285F4"></div>
+          <span>Optimisicka predpoved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <mat-toolbar>
+  <div>
+    <span class="material-icons">
+      android
+    </span>
+    <span>Ohryzecek</span>
+  </div>
+  <div>
+    <span (click)="search.focus()" class="material-icons" style="font-size: 2rem;">
+      search
+    </span>
+    <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
+  </div>
+</mat-toolbar> -->
+<div class="floatingSlpit floatingSlpitThirdA">
+  <div class="floating">
+    <div class="info">
+      <p>
+        <span class="description">Obec:</span>
+        <span>
+          <span class="material-icons">business</span>
+          <span>{{Confinig.name}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">Populace:</span>
+        <span>
+          <span class="material-icons">perm_identity</span>
+          <span>{{Confinig.population}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">Nakazeni na 100:</span>
+        <span style="color: var(--backgroundWarn)">
+          <span class="material-icons">coronavirus</span>
+          <span>{{Confinig.curentPer}}%</span>
+        </span>
+      </p>
+    </div>
+
+  </div>
+  <div class="floating">
+    mapa
+
+  </div>
+</div>
+<div class="floatingSlpitNoSpace floatingSlpitThirdB">
+  <div class="floating" style="background: var(--yLight)">
+    <!-- <h2 class="floatingHeader">Nakazeni</h2> -->
+    <div>
+      <div class="bigNumber">
+        <span class="bigPart">
+          <span class="material-icons">coronavirus</span>
+          <span>{{Confinig.curent}}</span>
+        </span>
+        <span class="smallPart">Nakazeni</span>
+      </div>
+    </div>
+  </div>
+  <div class="floating">
+    <div>
+      <span class="gragName">Nakazeni</span>
+      <div class="mainGraf" #grafAbs></div>
+      <div class="legend">
+        <div>
+          <div class="legendColor" style="background: #F4B400"></div>
+          <span>Aktualini vyvoj</span>
+        </div>
+        <div>
+          <div class="legendColor" style="background: #DB4437"></div>
+          <span>Pesimisticka predpoved</span>
+        </div>
+        <div>
+          <div class="legendColor" style="background: #4285F4"></div>
+          <span>Optimisicka predpoved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="floatingSlpitNoSpace floatingSlpitThirdA">
+  <div class="floating">
+    <div>
+      <span class="gragName">Nakazeni</span>
+      <div class="mainGraf" #grafRel></div>
+      <div class="legend">
+        <div>
+          <div class="legendColor" style="background: #F4B400"></div>
+          <span>Aktualini vyvoj</span>
+        </div>
+        <div>
+          <div class="legendColor" style="background: #DB4437"></div>
+          <span>Pesimisticka predpoved</span>
+        </div>
+        <div>
+          <div class="legendColor" style="background: #4285F4"></div>
+          <span>Optimisicka predpoved</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="floating" style="background: var(--yLight)">
+    <div>
+      <div class="bigNumber">
+        <span class="bigPart">
+          <span class="material-icons">coronavirus</span>
+          <span>{{Confinig.curent}}</span>
+        </span>
+        <span class="smallPart">Nakazeni</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="absoluteHeader" (click)="redirectBack()">
+  <span class="material-icons">
+    arrow_back
+  </span>
+</div>

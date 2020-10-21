@@ -1,31 +1,33 @@
-<div class="floatingSlpit">
-  <div class="floating" *ngIf="SelctedPosition">
-    <h2 class="floatingHeader">Position</h2>
-    <div>
-      <p>
-        <span>Lan: </span>
-        <span>{{SelctedPosition.lat}}</span>
-      </p>
-      <p>
-        <span>Lng: </span>
-        <span>{{SelctedPosition.lng}}</span>
-      </p>
-    </div>
-  </div>
-  <div class="floating" *ngIf="SelctedPosition">
-    <h2 class="floatingHeader">Position</h2>
-    <div>
-      <p>
-        <span>Obec: </span>
-        <span>...</span>
-      </p>
-      <button mat-raised-button color="primary">More Info</button>
-    </div>
-  </div>
-</div>
-<div class="floating">
-  <!-- <h2 class="floatingHeader">Mapa</h2> -->
+<!-- <div class="floating">
   <div style="margin: 0">
-    <div class="map" #map></div>
+    
+  </div>
+</div> -->
+<div class="map" #map></div>
+<div class="absoluteHeader" (click)="search.focus()" >
+  <span class="material-icons"> 
+    search
+  </span>
+  <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter()">
+</div>
+<div class="absoluteFooter">
+  <h2>Mlada Boleslav</h2>
+  <div class="covidInfo">
+    <p>
+      <span class="material-icons">coronavirus</span>
+      <span>500</span>
+    </p>
+    <p>
+      <span class="material-icons">addchart</span>
+      <span>+5</span>
+    </p>
+  </div>
+  <div class="forwardButtonWraper">
+    <button mat-raised-button class="forwardButton">
+      <span>More Info</span>
+      <!-- <span class="material-icons">
+        forward
+      </span> -->
+    </button>
   </div>
 </div>
