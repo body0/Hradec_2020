@@ -1,5 +1,20 @@
 <mat-toolbar>
-  <mat-icon>android</mat-icon>
-  <span>My Application</span>
+  <div>
+    <span class="material-icons">
+      android
+    </span>
+    <span>My Application</span>
+  </div>
+  <div>
+    <span class="material-icons">
+      search
+    </span>
+    <!-- <input matInput autocomplete="off" placeholder="Location"> -->
+    <mat-form-field>
+      <input matInput type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
+    </mat-form-field>
+    <!-- <input matInput type="text" [(ngModel)]="value"> -->
+    <!--   <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
+  </div>
 </mat-toolbar>
 <ng-content></ng-content>

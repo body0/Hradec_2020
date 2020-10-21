@@ -6,4 +6,12 @@ import { Injectable } from '@angular/core';
 export class DataLoaderService {
 
   constructor() { }
+
+  getDataFromLocation(name: string) {
+
+  }
+
+  getLocationData(xCord: number, yCord: number) {
+
+  }
 }

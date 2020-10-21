@@ -12,17 +12,261 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$HR-primary: mat-palette($mat-indigo);
-$HR-accent: mat-palette($mat-pink, A200, A100, A400);
+
+/* $md-primary: (
+    50 : #e1f3fc,
+    100 : #b3e1f7,
+    200 : #81cdf2,
+    300 : #4fb9ed,
+    400 : #29aae9,
+    500 : #039be5,
+    600 : #0393e2,
+    700 : #0289de,
+    800 : #027fda,
+    900 : #016dd3,
+    A100 : #fbfdff,
+    A200 : #c8e1ff,
+    A400 : #95c5ff,
+    A700 : #7bb8ff,
+    contrast: (
+        50 : #000,
+        100 : #000,
+        200 : #000,
+        300 : #000,
+        400 : #000,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #000,
+        A200 : #000,
+        A400 : #000,
+        A700 : #000,
+    )
+);
+
+$md-secondary: (
+    50 : #fee8e7,
+    100 : #fcc7c3,
+    200 : #faa19b,
+    300 : #f77b72,
+    400 : #f65f54,
+    500 : #f44336,
+    600 : #f33d30,
+    700 : #f13429,
+    800 : #ef2c22,
+    900 : #ec1e16,
+    A100 : #fff,
+    A200 : #ffe9e9,
+    A400 : #ffb8b6,
+    A700 : #ff9f9c,
+    contrast: (
+        50 : #000,
+        100 : #000,
+        200 : #000,
+        300 : #000,
+        400 : #000,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #000,
+        A200 : #000,
+        A400 : #000,
+        A700 : #000,
+    )
+); */
+
+$md-primary: (
+    50 : #e1e4e6,
+    100 : #b3bdc1,
+    200 : #819198,
+    300 : #4e646f,
+    400 : #284350,
+    500 : #022231,
+    600 : #021e2c,
+    700 : #011925,
+    800 : #01141f,
+    900 : #010c13,
+    A100 : #54a0ff,
+    A200 : #2184ff,
+    A400 : #0069ed,
+    A700 : #005ed4,
+    contrast: (
+        50 : #000,
+        100 : #000,
+        200 : #000,
+        300 : #fff,
+        400 : #fff,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #000,
+        A200 : #fff,
+        A400 : #fff,
+        A700 : #fff,
+    )
+);
+
+/* $md-secondary: (
+    50 : #e1ebef,
+    100 : #b4ccd7,
+    200 : #83abbc,
+    300 : #5189a1,
+    400 : #2b6f8d,
+    500 : #065679,
+    600 : #054f71,
+    700 : #044566,
+    800 : #033c5c,
+    900 : #022b49,
+    A100 : #7dbfff,
+    A200 : #4aa6ff,
+    A400 : #178dff,
+    A700 : #0080fc,
+    contrast: (
+        50 : #000,
+        100 : #000,
+        200 : #000,
+        300 : #fff,
+        400 : #fff,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #000,
+        A200 : #000,
+        A400 : #fff,
+        A700 : #fff,
+    )
+); */
+$md-secondary:  (
+    /* 50 : #fdf7e0,
+    100 : #f9ecb3,
+    200 : #f5e080,
+    300 : #f1d34d,
+    400 : #eec926,
+    500 : #ebc000,
+    600 : #e9ba00,
+    700 : #e5b200,
+    800 : #e2aa00,
+    900 : #dd9c00,
+    A100 : #fff,
+    A200 : #fff0d1,
+    A400 : #ffdf9e,
+    A700 : #ffd685,
+    contrast: (
+        50 : #000,
+        100 : #000,
+        200 : #000,
+        300 : #000,
+        400 : #fff,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #000,
+        A200 : #000,
+        A400 : #000,
+        A700 : #000,
+    ) */
+    50 : #fef3e2,
+    100 : #fce1b6,
+    200 : #facd85,
+    300 : #f7b854,
+    400 : #f6a930,
+    500 : #f49a0b,
+    600 : #f3920a,
+    700 : #f18808,
+    800 : #ef7e06,
+    900 : #ec6c03,
+    A100 : #ffffff,
+    A200 : #ffece0,
+    A400 : #ffcdad,
+    A700 : #ffbe93,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+
+$md-warn: (
+    50 : #fee8e7,
+    100 : #fcc7c3,
+    200 : #faa19b,
+    300 : #f77b72,
+    400 : #f65f54,
+    500 : #f44336,
+    600 : #f33d30,
+    700 : #f13429,
+    800 : #ef2c22,
+    900 : #ec1e16,
+    A100 : #fff,
+    A200 : #ffe9e9,
+    A400 : #ffb8b6,
+    A700 : #ff9f9c,
+    contrast: (
+        50 : #000,
+        100 : #000,
+        200 : #000,
+        300 : #000,
+        400 : #000,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #000,
+        A200 : #000,
+        A400 : #000,
+        A700 : #000,
+    )
+);
+
+
+
+$BLE-primary: mat-palette($md-primary);
+// $BLE-primary: mat-palette($md-secondary);
+// $BLE-accent: mat-palette($md-secondary, A200, A100, A400);
+$BLE-accent: mat-palette($md-secondary);
+// $BLE-accent: mat-palette($md-warn);
 
 // The warn palette is optional (defaults to red).
-$HR-warn: mat-palette($mat-red);
+// $BLE-warn: mat-palette($mat-red);
+$BLE-warn: mat-palette($md-warn);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$HR-theme: mat-light-theme($HR-primary, $HR-accent, $HR-warn);
+$BLE-theme: mat-light-theme($BLE-primary, $BLE-accent, $BLE-warn);
+/* $BLE-theme: mat-light-theme((
+    color: (
+        primary: $BLE-primary,
+        accent: $BLE-accent,
+        warn: $BLE-warn,  
+    )
+  )); */
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($HR-theme);
+@include angular-material-theme($BLE-theme);
 
