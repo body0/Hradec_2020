@@ -4,15 +4,20 @@ from app.models import User
 
 
 @app.route('/', methods=["GET"])
-@app.route('/query', methods=["GET"])
+@app.route('/api', methods=["POST"])
 def query_records():
+    json_data = request.json
+    """
     user_id = request.json.get('id')
     user = User.query.get(user_id)
     if not user:
         return jsonify({'error': 'data not found'})
-    return jsonify(user.serialize())
+    """
+    return jsonify(json_data)
+    # return jsonify(user.serialize())
 
 
+"""
 @app.route('/add', methods=["POST"])
 def add_record():
     username = request.json.get('username')
@@ -25,3 +30,4 @@ def add_record():
         return jsonify(user.serialize())
     except Exception as e:
         return str(e)
+"""
