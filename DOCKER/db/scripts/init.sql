@@ -4,7 +4,8 @@ CREATE USER apiUser WITH PASSWORD 'kredenc123';
 GRANT ALL PRIVILEGES ON DATABASE covid TO apiUser;
 
 
-CREATE TABLE covid.test_table
+CREATE SCHEMA covidData;
+CREATE TABLE covidData.test_table
 (
   id INT PRIMARY KEY,
   username VARCHAR (50) NOT NULL,
