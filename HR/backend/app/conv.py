@@ -7,8 +7,10 @@ def pos_to_city(lat, lng):
     response = requests.get(url)
     json = response.json()
     string = str(json["plus_code"]["compound_code"]).split(", ")
+    if(string[1] != "Czechia"):
+        return "Pracujeme na tom"
     string = string[0].split()
     return string[1]
 
 
-print(pos_to_city(50.060148, 15.704721))
+print(pos_to_city(48.858093, 2.294694))
