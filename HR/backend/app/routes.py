@@ -10,6 +10,8 @@ from app.conv import pos_to_city
 def query(name):
     pop = db_session.query(Population).filter_by(nazev_obce=name)
     city = pop.first()
+    if city is None:
+        return jsonify({'error': 'City not found!'})
     today = datetime(2020, 10, 21)
     cases = db_session.query(Cases).filter_by(obec_kod=city.LAU_2)
     cases_now = cases.filter_by(datum=today).first()
@@ -64,5 +66,4 @@ def query_by_location():
     lat = json_data["lat"]
     lng = json_data["lng"]
     city = pos_to_city(lat, lng)
-    print(city)
     return query(city)
