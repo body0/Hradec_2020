@@ -1,7 +1,6 @@
 days_to_predict = 7
 optimistic_index = 0.9
 
-
 def calculate_R(infection): 
     num_of_input_days = 7
     AllR = 0
