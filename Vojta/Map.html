@@ -23,9 +23,11 @@
       }
     </style>
     <script>
+      let map;
+      let markers = [];
       function initMap() {
         const myLatlng = { lat: 50.036179154236905, lng: 14.452818238135281 };
-        const map = new google.maps.Map(document.getElementById("map"), {
+        map = new google.maps.Map(document.getElementById("map"), {
           zoom: 7,
           center: myLatlng,
           disableDefaultUI: true,
@@ -33,6 +35,7 @@
           streetViewControl: false,
           Fullscreencontrol: false, 
         });
+   
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
           content: "Click the map to get Lat/Lng!",
@@ -40,18 +43,31 @@
         });
         infoWindow.open(map);
         // Configure the click listener.
-        map.addListener("click", (mapsMouseEvent) => {
-          // Close the current InfoWindow.
-          infoWindow.close();
-          // Create a new InfoWindow.
-          infoWindow = new google.maps.InfoWindow({
-            position: mapsMouseEvent.latLng,
-          });
-          infoWindow.setContent(
-            JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-          );
-          infoWindow.open(map);
+        map.addListener("click", (event) => {
+          clearMarkers();
+          addMarker(event.latLng);
         });
+      }
+      function addMarker(location) {
+        const marker = new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+        markers.push(marker);
+      }
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+      function setMapOnAll(map) {
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
       }
     </script>
   </head>
