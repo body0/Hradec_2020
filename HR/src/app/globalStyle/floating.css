@@ -1,0 +1,47 @@
+p {
+    margin: 0;
+}
+h2 {
+    margin: .8rem .0rem .4rem .0rem;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+.floating{
+    /* max-width: 850px; */
+    max-width: 55rem;
+    position: relative;
+    width: 97%;
+    margin: 1rem auto;
+    background-color: white;
+    /* background-color: rgb(255, 255, 255, 0.8); */
+    /* padding: 0 0 .7rem 0; */
+    /* box-shadow:  2px 2px 6px #555555; */
+    box-shadow: 1px 2px 1px 1px #555;
+    box-shadow: 1px 2px 1px 1px rgba(100, 100, 100, 0.5);
+    overflow: auto;
+}
+.floating > div {
+    margin: .2rem 1rem 1.2rem 1rem;
+}
+.floatingHeader {
+    margin: 0;
+    padding: .6rem .9rem;
+    background-color: var(--header);
+    color: #e0e0e0;
+    font-size: 1.2rem;
+}
+.floatingSlpit {
+    display: flex;
+    max-width: 55rem;
+    position: relative;
+    width: 97%;
+}
+.floatingSlpit > div:not:first-child {
+    width: 100%;
+}
+.floatingSlpit > div:not:first-child {
+    margin-right: 1rem;
+}
+.floatingSlpit > div:not:last-child {
+    margin-left: 1rem;
+}

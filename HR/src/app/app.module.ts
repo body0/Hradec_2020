@@ -9,12 +9,14 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { MaterialModule } from './material/material.module';
+import { GrafInitComponent } from './graf-init/graf-init.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    NavComponent
+    NavComponent,
+    GrafInitComponent
   ],
   imports: [
     BrowserModule,
