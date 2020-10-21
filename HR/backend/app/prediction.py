@@ -21,18 +21,20 @@ def calculate_R(infection):
     return(AllR / (num_of_input_days - 1))
 
 def pessimistic_prediction(infection):
-    pessimistic_prediction = [infection[0] * NumberR]
+    R = calculateR(infection)
+    pessimistic_prediction = [infection[0] * R]
 
     for i in range(days_to_predict):
-        pessimistic_prediction.append(pessimistic_prediction[i] * NumberR)
+        pessimistic_prediction.append(pessimistic_prediction[i] * R)
 
     return pessimistic_prediction
 
 def optimistic_prediction(infection):
-    optimistic_prediction = [infection[0] * NumberR]
+    R = calculateR(infection)
+    optimistic_prediction = [infection[0] * R]
 
     for i in range(days_to_predict):
-        NumberR = NumberR * optimistic_index
-        optimistic_prediction.append(optimistic_prediction[i] * NumberR)
+        R = R * optimistic_index
+        optimistic_prediction.append(optimistic_prediction[i] * R)
 
     return optimistic_prediction
