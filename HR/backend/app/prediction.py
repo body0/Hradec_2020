@@ -1,3 +1,5 @@
+import math
+
 days_to_predict = 7
 optimistic_index = 0.9
 
@@ -39,3 +41,8 @@ def optimistic_prediction(infection, R):
         optimistic_prediction.append(optimistic_prediction[i] * R)
 
     return optimistic_prediction
+
+def caluculate_risk(population, r, ill):
+	city_risk = (math.log2((population/1300000)*6+2)-1)/4 + 1
+	
+	return (ill/population) * max(1.25, pow(r, 2)) * city_risk
