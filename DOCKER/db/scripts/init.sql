@@ -1,3 +1,9 @@
+CREATE DATABASE covid;
+
+CREATE USER apiUser WITH PASSWORD 'kredenc123';
+GRANT ALL PRIVILEGES ON DATABASE covid TO apiUser;
+
+
 CREATE TABLE covid.test_table
 (
   id INT PRIMARY KEY,
