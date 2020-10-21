@@ -14,3 +14,14 @@ Cílem projektu je vytvořit webovou aplikaci pro odhad rizika nakažení korona
 ## Rozšíření
 schopnost odhadnout situaci v dané oblasti v daném časovém úseku
 semafor
+
+
+## DB
+- POSTGRES_USER=admin
+- POSTGRES_PASSWORD=zvikackaJeVecna
+
+- DB_USER=apiUser
+- DB_PASSWORD=KVpNLrA9z4n95RpNH0Cm5uwy8vCCPOaz 
+
+- DB_HOST=144.91.111.198:5432
+- DB_NAME=covid
