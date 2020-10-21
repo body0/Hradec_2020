@@ -19,7 +19,8 @@
     -Integrace Komponent
     -Vizualizace dat
 
-
+ToDo:
+    -osetreni more u google api 
 
 ======== To Do předem =========
 
