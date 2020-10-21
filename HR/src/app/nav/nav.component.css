@@ -5,3 +5,56 @@ mat-toolbar {
     background: var(--header);
     color: white;
 }
+mat-toolbar > div {
+    display: flex;
+    align-items: center;    
+}
+mat-toolbar > div > * {
+    margin: 0 .3rem; 
+}
+.floatingContent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.floatingBackgroud {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+}
+.floatingBackgroud > .top {
+    height: 50vh;
+    width: 100%;
+    background: var(--backgroundTop);
+    clip-path: polygon(100% 0, 100% 80%, 34% 95%, 0 70%, 0 0);
+}
+/* .floatingBackgroud > .bottom {
+    height: 50vh;
+    background: var(--backgroundTop);
+} */
+.searchIcon {
+    color: var(--backgroundSec);
+}
+
+.input {
+    font-size: 18px;
+    padding: 0;
+    display: block;
+    border: none;
+    background: var(--header);
+   /*  border-bottom: 1px solid white; */
+    color: white;
+    max-width: 0;
+    transition: max-width .75s ease-out;
+}
+input:focus { 
+    outline:none;
+    border-bottom: 2px solid white;
+    max-width: 1000px;
+    padding: 10px 10px 10px 5px;
+ }
