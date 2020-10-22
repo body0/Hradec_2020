@@ -3,7 +3,7 @@ from flask_cors import CORS
 import psycopg2
 import datetime
 from app.prediction import calculate_R, pessimistic_prediction,\
-     optimistic_prediction, days_to_predict
+     optimistic_prediction, days_to_predict, caluculate_risk
 import requests
 import os
 
@@ -18,18 +18,16 @@ DB_PASSWORD = os.environ.get('DB_PASSWORD') or 'password'
 DB_NAME = os.environ.get('DB_NAME') or 'database'
 GOOGLE_KEY = os.environ.get('GOOGLE_KEY') or 'nic tu neni'
 
-# con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-con = psycopg2.connect(database="covid", user=DB_NAME, password="zvikackaJeVecna", host=DB_HOST , port=DB_PORT)
+con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
+# con = psycopg2.connect(database="covid", user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
 print("Database opened successfully")
 
 @app.route('/api')
 def hello_world():
     return 'Hello, World!'
 
-key = "AIzaSyC2W0Vw4sTjRortHkmPg-G4qcTRWkjazAQ"
-
 def pos_to_city(lat, lng):
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&result_type=street_address&key={key}"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&result_type=street_address&key={GOOGLE_KEY}"
     response = requests.get(url)
     json = response.json()
     string = str(json["plus_code"]["compound_code"]).split(", ")
@@ -50,20 +48,20 @@ def query(name):
 
     cityId = rowsA[0][2]
     cur = con.cursor()
-    cur.execute('SELECT * from pripady where obec_kod = \''+cityId +'\' ORDER BY datum ASC limit 14;')
+    cur.execute('SELECT * from pripady where obec_kod = \''+cityId +'\' ORDER BY datum DESC limit 14;')
     rows = cur.fetchall()
 
-    caseCurent = []
     if rows[0][3] == 0:
         rows = rows[1:]
+
+    caseCurent = []
     for rowLine in rows:
         caseCurent.append({
             "date": rowLine[1].isoformat(),
             "rel": rowLine[3],
             "abs": rowLine[4]
         })
-    print(caseCurent)
-    
+
     absCurentLastSeven = []
     for i in range(0, min(7, len(rows))):
         rowLine = rows[i]
@@ -77,16 +75,13 @@ def query(name):
 
     r_pred = calculate_R(absCurentLastSeven)
 
-    print(relCurentLastSeven)
-    print(r_pred)
     optRel = optimistic_prediction(relCurentLastSeven, r_pred)
     optAbs = optimistic_prediction(absCurentLastSeven, r_pred)
     negRel = pessimistic_prediction(relCurentLastSeven, r_pred)
     negAbs = pessimistic_prediction(absCurentLastSeven, r_pred)
 
 
-    now = datetime.datetime.now()
-    today = new datetime(now.year, now.month, now.day)
+    today = datetime.datetime.today()
 
     predNeg = []
     for valu in zip(optRel, optAbs):
@@ -109,20 +104,27 @@ def query(name):
         caseFuture.append({
             "date": (today + datetime.timedelta(days=i+1)).isoformat(),
             "neg": valu[0],
-            "opt": value[1]
+            "opt": valu[1]
         })
 
-    
+    caseCurent.reverse()
+    population = rowsA[0][4]
+    cityName = rowsA[0][3]
+    percentCovid = caseCurent[0]['abs'] / population * 100
+
+    percentToCatch = caluculate_risk(population, r_pred, caseCurent[0]['abs'])
 
     print(rowsA[0])
     return jsonify({
-        "name": rowsA[0][3],
-        "population": rowsA[0][4],
+        "name": cityName,
+        "population": population,
         "abs": caseCurent[0]['abs'],
         "rel": caseCurent[0]['rel'],
         "caseCurrent": caseCurent,
         "caseFuture": caseFuture,
-        "r": r_pred
+        "r": r_pred,
+        'p': percentCovid,
+        "cach": percentToCatch
     })
     
 

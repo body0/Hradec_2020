@@ -23,7 +23,8 @@ export class GrafInitComponent implements AfterViewInit {
   }
 
   async loadData() {
-    const data = this.dataLoaderService.getLastLoadedInfo();
+    // const data = this.dataLoaderService.getLastLoadedInfo();
+    const data = await this.dataLoaderService.getDataFromLocation('Brno');
     if (!data) {
       this.Error = 'No data To Load';
       return;
@@ -36,14 +37,68 @@ export class GrafInitComponent implements AfterViewInit {
     } else {
       this.WarningColor = 'var(--backgroundWarn)';
     }
+    this.createRelative();
+    this.createAbsolute();
+  }
+
+  createAbsolute() {
+    const grafData = [
+      ['', '', '', '']
+    ];
+    this.Confinig.caseCurrent.forEach(elm => {
+      const subArr = [elm.date, null, null, elm.abs];
+      grafData.push(subArr);
+    });
+    const firstFuture = this.Confinig.caseFuture[0];
+    // const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
+    grafData.push([firstFuture.date, firstFuture.neg.abs, firstFuture.opt.abs, firstFuture.opt.abs]);
+    for (let i = 1; i < this.Confinig.caseFuture.length; i++) {
+      const elm = this.Confinig.caseFuture[i];
+      const subArr = [elm.date, elm.neg.abs, elm.opt.abs, null];
+      grafData.push(subArr);
+    }
 
     setTimeout(() => {
       const google = (window as any).google;
       google.charts.load('current', { 'packages': ['line'] });
       google.charts.setOnLoadCallback(() => {
-        var data = google.visualization.arrayToDataTable([
-          ['', 'Optimistický vývoj', 'Pesimistický vývoj', ''],
-        ]);
+        var data = google.visualization.arrayToDataTable(grafData);
+
+        var options = {
+          // title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'none' }
+        };
+
+        var chart = new google.charts.Line(this.grafAbs.nativeElement);
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+      });
+    }, 100); // TO DO
+  }
+
+  createRelative() {
+    const grafData = [
+      ['', '', '', '']
+    ];
+    this.Confinig.caseCurrent.forEach(elm => {
+      const subArr = [elm.date, null, null, elm.rel];
+      grafData.push(subArr);
+    });
+    const firstFuture = this.Confinig.caseFuture[0];
+    // const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
+    grafData.push([firstFuture.date, firstFuture.neg.rel, firstFuture.opt.rel, firstFuture.opt.rel]);
+    for (let i = 1; i < this.Confinig.caseFuture.length; i++) {
+      const elm = this.Confinig.caseFuture[i];
+      const subArr = [elm.date, elm.neg.rel, elm.opt.rel, null];
+      grafData.push(subArr);
+    }
+
+    setTimeout(() => {
+      const google = (window as any).google;
+      google.charts.load('current', { 'packages': ['line'] });
+      google.charts.setOnLoadCallback(() => {
+        var data = google.visualization.arrayToDataTable(grafData);
 
         var options = {
           // title: 'Company Performance',
@@ -60,53 +115,6 @@ export class GrafInitComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     // this.init();
-
-    setTimeout(() => {
-      const google = (window as any).google;
-      google.charts.load('current', { 'packages': ['line'] });
-      google.charts.setOnLoadCallback(() => {
-        var data = google.visualization.arrayToDataTable([
-          ['', 'Optimistický vývoj', 'Pesimistický vývoj', ''],
-          ['1. 6. 2004', null, null, 1],
-          ['1. 6. 2005', null, null, 70],
-          ['1. 6. 2006', 660, 660, 660],
-          ['1. 6. 2007', 103, 1030, null]
-        ]);
-
-        var options = {
-          // title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'none' }
-        };
-
-        var chart = new google.charts.Line(this.grafRel.nativeElement);
-
-        chart.draw(data, google.charts.Line.convertOptions(options));
-      });
-    }, 100); // TO DO
-    setTimeout(() => {
-      const google = (window as any).google;
-      google.charts.load('current', { 'packages': ['line'] });
-      google.charts.setOnLoadCallback(() => {
-        var data = google.visualization.arrayToDataTable([
-          ['', 'Optimistický vývoj', 'Pesimistický vývoj', ''],
-          ['1. 6. 2004', null, null, 1],
-          ['1. 6. 2005', null, null, 70],
-          ['1. 6. 2006', 660, 660, 660],
-          ['1. 6. 2007', 103, 1030, null]
-        ]);
-
-        var options = {
-          // title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'none' }
-        };
-
-        var chart = new google.charts.Line(this.grafAbs.nativeElement);
-
-        chart.draw(data, google.charts.Line.convertOptions(options));
-      });
-    }, 100); // TO DO
   }
 
   redirectBack() {

@@ -97,7 +97,7 @@
     <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
   </div>
 </mat-toolbar> -->
-<div class="floatingSlpit floatingSlpitThirdA">
+<div class="floatingSlpit floatingSlpitThirdA" style="grid-template-columns: 5fr 2fr;">
   <div class="floating">
     <div class="info">
       <p>
@@ -120,7 +120,7 @@
         <span class="description">Nakazeni na 100:</span>
         <span style="color: var(--backgroundWarn)">
           <span class="material-icons">coronavirus</span>
-          <span>{{Confinig?.abs}}%</span>
+          <span>{{Confinig?.p | number:'1.2-5'}}%</span>
         </span>
       </p>
     </div>
@@ -128,9 +128,38 @@
   </div>
   <div class="floating">
     mapa
-
   </div>
 </div>
+<div class="floating">
+  <div class="infoBig">
+    <div>
+      <div>
+        <span class="material-icons">
+          trending_up
+        </span>
+        <span>{{Confinig?.r | number:'1.2-3'}}</span>
+      </div>
+      <!-- <span class="material-icons" style="font-weight: bold; margin-left: 1rem;" [ngStyle]="{color: WarningColor}">
+          error_outline
+        </span> -->
+      <span class="infoBigTitle">
+        R faktor
+      </span>
+    </div>
+    <div>
+      <div>
+        <span class="material-icons" style="font-weight: bold; margin-left: 1rem;" [ngStyle]="{color: WarningColor}">
+          error_outline
+        </span>
+        <span>{{Confinig?.cach | number:'1.2-3'}}</span>
+      </div>
+      <span class="infoBigTitle">
+        sance nakazeni
+      </span>
+    </div>
+  </div>
+</div>
+
 <div class="floatingSlpitNoSpace floatingSlpitThirdB">
   <div class="floating" style="background: var(--yLight)">
     <!-- <h2 class="floatingHeader">Nakazeni</h2> -->
@@ -168,7 +197,7 @@
 <div class="floatingSlpitNoSpace floatingSlpitThirdA">
   <div class="floating">
     <div>
-      <span class="gragName">Nakazeni</span>
+      <span class="gragName">Přírůstky</span>
       <div class="mainGraf" #grafRel></div>
       <div class="legend">
         <div>
@@ -190,10 +219,10 @@
     <div>
       <div class="bigNumber">
         <span class="bigPart">
-          <span class="material-icons">coronavirus</span>
-          <span>{{Confinig?.abs}}</span>
+          <span class="material-icons">addchart</span>
+          <span>{{Confinig?.rel}}</span>
         </span>
-        <span class="smallPart">Nakazeni</span>
+        <span class="smallPart">Přírůstky</span>
       </div>
     </div>
   </div>

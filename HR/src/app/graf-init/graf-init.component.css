@@ -46,7 +46,6 @@
     width: 1em;
     border-radius: .3em;
     margin-right: .5em;
-
 }
 
 .bigNumber {
@@ -75,7 +74,29 @@
     font-size: .9rem;
     color: #555;
 }
-
+.infoBig {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.infoBig > div {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+}
+.infoBig > div > div {
+    display: flex;
+    align-items: center;
+    padding-bottom: .7rem;
+}
+.infoBig > div > div > .material-icons {
+    margin-right: .5rem;
+}
+.infoBig > .infoBigTitle {
+    font-size: 2rem;
+    
+}
 
 mat-toolbar {
     display: flex;

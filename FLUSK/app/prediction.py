@@ -1,7 +1,7 @@
 import math
 
 days_to_predict = 7
-optimistic_index = 0.9
+optimistic_index = 0.98
 
 
 def calculate_R(infection):
@@ -34,7 +34,7 @@ def pessimistic_prediction(infection, R):
 
 
 def optimistic_prediction(infection, R):
-    optimistic_prediction = [infection[starting_position] * R]
+    optimistic_prediction = [infection[0] * R]
 
     for i in range(days_to_predict):
         R = R * optimistic_index

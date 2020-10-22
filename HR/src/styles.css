@@ -15,7 +15,8 @@ body {
     /* --backgroundSec: #ebc000; */
     --backgroundSec: #F49A0B;
     --backgroundBackAlt: #039BE5;
-    --yLight: #f7b955;
+    /* --yLight: #f7b955; */
+    --yLight: #F4B400;
  }
 
  .gmnoprint{
