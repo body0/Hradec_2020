@@ -3,12 +3,8 @@ from flask_cors import CORS
 import psycopg2
 import datetime
 from app.prediction import calculate_R, pessimistic_prediction,\
-<<<<<<< HEAD
-     optimistic_prediction, days_to_predict, caluculate_risk
-=======
      optimistic_prediction, days_to_predict
 from app.utils import strip_accents
->>>>>>> 2bf319c1a83a9b14bb52fa5e637517682d96e473
 import requests
 import os
 
