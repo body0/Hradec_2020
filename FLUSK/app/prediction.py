@@ -25,16 +25,6 @@ def calculate_R(infection):
 
 
 def pessimistic_prediction(infection, R):
-    starting_position = 0
-    for i in infection:
-        if(infection(i) == 0):
-            starting_position += 1
-            days_to_predict += 1
-        else:
-            break
-
-    optimistic_prediction = [infection[starting_position] * R]
-
     pessimistic_prediction = [infection[0] * R]
 
     for i in range(days_to_predict):
@@ -44,14 +34,6 @@ def pessimistic_prediction(infection, R):
 
 
 def optimistic_prediction(infection, R):
-    starting_position = 0
-    for i in infection:
-        if(infection(i) == 0):
-            starting_position += 1
-            days_to_predict += 1
-        else:
-            break
-
     optimistic_prediction = [infection[starting_position] * R]
 
     for i in range(days_to_predict):
