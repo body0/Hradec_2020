@@ -3,7 +3,12 @@ from flask_cors import CORS
 import psycopg2
 import datetime
 from app.prediction import calculate_R, pessimistic_prediction,\
+<<<<<<< HEAD
      optimistic_prediction, days_to_predict, caluculate_risk
+=======
+     optimistic_prediction, days_to_predict
+from app.utils import strip_accents
+>>>>>>> 2bf319c1a83a9b14bb52fa5e637517682d96e473
 import requests
 import os
 
@@ -22,6 +27,7 @@ con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna
 # con = psycopg2.connect(database="covid", user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
 print("Database opened successfully")
 
+
 @app.route('/api')
 def hello_world():
     return 'Hello, World!'
@@ -39,6 +45,10 @@ def pos_to_city(lat, lng):
 
 
 def query(name):
+    name = strip_accents(name)
+    if name == "Prague":
+        name = "Praha"
+    print('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
     cur = con.cursor()
     cur.execute('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
     rowsA = cur.fetchall()
@@ -57,7 +67,7 @@ def query(name):
     caseCurent = []
     for rowLine in rows:
         caseCurent.append({
-            "date": rowLine[1].isoformat(),
+            "date": str(rowLine[1].date().isoformat()),
             "rel": rowLine[3],
             "abs": rowLine[4]
         })
@@ -80,12 +90,12 @@ def query(name):
     negRel = pessimistic_prediction(relCurentLastSeven, r_pred)
     negAbs = pessimistic_prediction(absCurentLastSeven, r_pred)
 
-
-    today = datetime.datetime.today()
+    today = datetime.datetime.now()
 
     predNeg = []
     for valu in zip(optRel, optAbs):
         predNeg.append({
+            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -93,6 +103,7 @@ def query(name):
     predOpt = []
     for valu in zip(negRel, negAbs):
         predOpt.append({
+            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -126,7 +137,6 @@ def query(name):
         'p': percentCovid,
         "cach": percentToCatch
     })
-    
 
 
 @app.route('/api/by-name', methods=["POST"])
@@ -134,7 +144,6 @@ def query_by_name():
     json_data = request.json
     name = json_data['name']
     return query(name)
-    
 
 
 @app.route('/api/by-location', methods=["POST"])
@@ -145,5 +154,6 @@ def query_by_location():
     city = pos_to_city(lat, lng)
     return query(city)
 
+
 if __name__ == '__main__':
-   app.run()
+    app.run()
