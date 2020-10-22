@@ -15,9 +15,7 @@ export class LandingPageComponent implements AfterViewInit {
 
   constructor(
     private dataLoaderService: DataLoaderService
-  ) {
-    dataLoaderService.getDataFromLocation('Brno');
-  }
+  ) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -73,8 +71,8 @@ export class LandingPageComponent implements AfterViewInit {
   async loadData(lat, lng) {
     this.Error = '';
     try {
-      const raw = this.dataLoaderService.getLocationData(lat, lng);
-      console.log(raw);
+      const raw = await this.dataLoaderService.getLocationData(lat, lng);
+      console.log('x', raw);
       this.SelectedPosition = raw;
     } catch (err) {
       this.Error = 'Cannot get city name';

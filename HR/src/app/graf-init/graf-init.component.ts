@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataLoaderService } from '../data-loader.service';
 
 @Component({
   selector: 'app-graf-init',
@@ -10,27 +11,56 @@ export class GrafInitComponent implements AfterViewInit {
 
   @ViewChild('grafAbs') grafAbs;
   @ViewChild('grafRel') grafRel;
-  Confinig = {
-    name: 'Mlad boleslav',
-    population: 60000,
-    curent: 205,
-    curentPer: 0.05,
-    increse: 5,
-    multiplicationFactor: 1.5
-  };
+  Confinig;
+  Error = '';
   WarningColor = '';
 
-  constructor(public router: Router) { }
+  constructor(
+    private dataLoaderService: DataLoaderService,
+    public router: Router) {
+    this.loadData();
+    dataLoaderService.getDataFromLocation('Brno');
+  }
 
-  ngAfterViewInit() {
-    // this.init();
-    if (this.Confinig.multiplicationFactor < 1) {
+  async loadData() {
+    const data = this.dataLoaderService.getLastLoadedInfo();
+    if (!data) {
+      this.Error = 'No data To Load';
+      return;
+    }
+    this.Confinig = data;
+    if (this.Confinig.r < 1) {
       this.WarningColor = '#8cff1a';
-    } else if (this.Confinig.multiplicationFactor < 1.2) {
+    } else if (this.Confinig.r < 1.2) {
       this.WarningColor = 'var(--yLight)';
     } else {
       this.WarningColor = 'var(--backgroundWarn)';
     }
+
+    setTimeout(() => {
+      const google = (window as any).google;
+      google.charts.load('current', { 'packages': ['line'] });
+      google.charts.setOnLoadCallback(() => {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Optimistický vývoj', 'Pesimistický vývoj', ''],
+        ]);
+
+        var options = {
+          // title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'none' }
+        };
+
+        var chart = new google.charts.Line(this.grafRel.nativeElement);
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+      });
+    }, 100); // TO DO
+  }
+
+  ngAfterViewInit() {
+    // this.init();
+
     setTimeout(() => {
       const google = (window as any).google;
       google.charts.load('current', { 'packages': ['line'] });

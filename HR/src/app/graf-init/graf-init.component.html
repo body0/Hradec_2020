@@ -104,7 +104,7 @@
         <span class="description">Obec:</span>
         <span>
           <span class="material-icons">business</span>
-          <span>{{Confinig.name}}</span>
+          <span>{{Confinig?.name}}</span>
         </span>
       </p>
       <mat-divider></mat-divider>
@@ -112,7 +112,7 @@
         <span class="description">Populace:</span>
         <span>
           <span class="material-icons">perm_identity</span>
-          <span>{{Confinig.population}}</span>
+          <span>{{Confinig?.population}}</span>
         </span>
       </p>
       <mat-divider></mat-divider>
@@ -120,7 +120,7 @@
         <span class="description">Nakazeni na 100:</span>
         <span style="color: var(--backgroundWarn)">
           <span class="material-icons">coronavirus</span>
-          <span>{{Confinig.curentPer}}%</span>
+          <span>{{Confinig?.abs}}%</span>
         </span>
       </p>
     </div>
@@ -138,7 +138,7 @@
       <div class="bigNumber">
         <span class="bigPart">
           <span class="material-icons">coronavirus</span>
-          <span>{{Confinig.curent}}</span>
+          <span>{{Confinig?.abs}}</span>
         </span>
         <span class="smallPart">Nakazeni</span>
       </div>
@@ -191,7 +191,7 @@
       <div class="bigNumber">
         <span class="bigPart">
           <span class="material-icons">coronavirus</span>
-          <span>{{Confinig.curent}}</span>
+          <span>{{Confinig?.abs}}</span>
         </span>
         <span class="smallPart">Nakazeni</span>
       </div>
