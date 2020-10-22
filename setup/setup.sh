@@ -7,15 +7,15 @@ wget $ODKAZ_VYSKYTY -O vyskyty.zip
 unzip vyskyty.zip
 
 wget $ODKAZ_POPULACE -O populace.xlsx
-'
+
 
 python3 parseTables.py
-
+'
 # assuming set PGPASSWORD
 psql -h 144.91.111.198 -p 5432 -U admin -d covid -c "CREATE TABLE pripady ( \
   id Integer PRIMARY KEY, \
   datum DATE, \
-  obec_kod VARCHAR(20), \
+  obec_kod TEXT, \
   nove_pripady Integer, \
   aktualne_nemocnych Integer \
 );" -c "\\copy pripady FROM ./cases.csv DELIMITER ',' CSV HEADER;" \

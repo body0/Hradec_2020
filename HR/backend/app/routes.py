@@ -14,13 +14,18 @@ def after_request(response):
     return response
 
 
+@app.route('/api')
+def hello_world():
+    return 'Hello, World!'
+
+
 def query(name):
     pop = db_session.query(Population).filter_by(nazev_obce=name)
     city = pop.first()
     if city is None:
         return jsonify({'error': 'City not found!'})
     today = datetime(2020, 10, 21)
-    cases = db_session.query(Cases).filter_by(obec_kod=city.LAU_2)
+    cases = db_session.query(Cases).filter_by(obec_kod=city.lau_2)
     cases_now = cases.filter_by(datum=today).first()
     cases_prev = [c[0] for c in list(cases.order_by(Cases.datum.desc()).
                                      limit(14).
