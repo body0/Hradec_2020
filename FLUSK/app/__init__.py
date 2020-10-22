@@ -4,6 +4,7 @@ import psycopg2
 import datetime
 from app.prediction import calculate_R, pessimistic_prediction,\
      optimistic_prediction, days_to_predict
+from app.utils import strip_accents
 import requests
 
 app = Flask(__name__)
@@ -13,11 +14,14 @@ CORS(app)
 con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
 print("Database opened successfully")
 
+
 @app.route('/api')
 def hello_world():
     return 'Hello, World!'
 
+
 key = "AIzaSyC2W0Vw4sTjRortHkmPg-G4qcTRWkjazAQ"
+
 
 def pos_to_city(lat, lng):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&result_type=street_address&key={key}"
@@ -32,6 +36,9 @@ def pos_to_city(lat, lng):
 
 
 def query(name):
+    name = strip_accents(name)
+    if name == "Prague":
+        name = "Praha"
     print('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
     cur = con.cursor()
     cur.execute('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
@@ -48,11 +55,11 @@ def query(name):
     caseCurent = []
     for rowLine in rows:
         caseCurent.append({
-            "date": rowLine[1].isoformat(),
+            "date": str(rowLine[1].date().isoformat()),
             "rel": rowLine[3],
             "abs": rowLine[4]
         })
-    
+
     absCurentLastSeven = []
     for i in range(0, min(7, len(rows))):
         rowLine = rows[i]
@@ -70,14 +77,14 @@ def query(name):
     negRel = pessimistic_prediction(relCurentLastSeven, r_pred)
     negAbs = pessimistic_prediction(absCurentLastSeven, r_pred)
 
-    today = datetime.datetime.now() 
+    today = datetime.datetime.now()
 
     predNeg = []
     i = 0
     for valu in zip(optRel, optAbs):
         i += i
         predNeg.append({
-            "date": (today + datetime.timedelta(days=i+1)).isoformat(),
+            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -87,7 +94,7 @@ def query(name):
     for valu in zip(negRel, negAbs):
         i += i
         predOpt.append({
-            "date": (today + datetime.timedelta(days=i+1)).isoformat(),
+            "date": str(today + datetime.timedelta(days=i+1)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -101,7 +108,6 @@ def query(name):
         "caseFuture1": predOpt,
         "r": r_pred
     })
-    
 
 
 @app.route('/api/by-name', methods=["POST"])
@@ -109,7 +115,6 @@ def query_by_name():
     json_data = request.json
     name = json_data['name']
     return query(name)
-    
 
 
 @app.route('/api/by-location', methods=["POST"])
@@ -120,5 +125,6 @@ def query_by_location():
     city = pos_to_city(lat, lng)
     return query(city)
 
+
 if __name__ == '__main__':
-   app.run()
+    app.run()
