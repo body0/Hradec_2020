@@ -7,6 +7,13 @@ from app.prediction import calculate_R, pessimistic_prediction,\
 from app.conv import pos_to_city
 
 
+@app.after_request
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
 def query(name):
     pop = db_session.query(Population).filter_by(nazev_obce=name)
     city = pop.first()
