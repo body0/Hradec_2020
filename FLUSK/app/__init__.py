@@ -70,6 +70,14 @@ def query(name):
     negRel = pessimistic_prediction(relCurentLastSeven, r_pred)
     negAbs = pessimistic_prediction(absCurentLastSeven, r_pred)
 
+#not finished
+    while(len(optRel) > days_to_predict):
+        optRel.pop()
+
+    while(len((negRel) > days_to_predict):
+        negRel.pop()
+#not finished
+
     today = datetime.datetime.now() 
 
     predNeg = []
