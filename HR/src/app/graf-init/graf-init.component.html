@@ -97,6 +97,23 @@
     <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
   </div>
 </mat-toolbar> -->
+<mat-toolbar>
+  <div class="back">
+    <span class="material-icons">
+      arrow_back
+    </span>
+  </div>
+  <div>
+    <img src="assets/logo1.svg" alt="">
+    <span>Cestovateluv pruvodce karantenou</span>
+  </div>
+  <!-- <div>
+    <span (click)="search.focus()" class="material-icons" style="font-size: 2rem;">
+      search
+    </span>
+    <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
+  </div> -->
+</mat-toolbar>
 <div class="floatingSlpit floatingSlpitThirdA" style="grid-template-columns: 5fr 2fr;">
   <div class="floating">
     <div class="info">
@@ -226,9 +243,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="absoluteHeader" (click)="redirectBack()">
-  <span class="material-icons">
-    arrow_back
-  </span>
 </div>
