@@ -3,7 +3,7 @@ from flask_cors import CORS
 import psycopg2
 import datetime
 from app.prediction import calculate_R, pessimistic_prediction,\
-     optimistic_prediction, days_to_predict
+     optimistic_prediction, days_to_predict, caluculate_risk
 from app.utils import strip_accents
 import requests
 import os
@@ -63,7 +63,7 @@ def query(name):
     caseCurent = []
     for rowLine in rows:
         caseCurent.append({
-            "date": str(rowLine[1].date().isoformat()),
+            "date": rowLine[1],
             "rel": rowLine[3],
             "abs": rowLine[4]
         })
