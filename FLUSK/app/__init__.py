@@ -94,7 +94,7 @@ def query(name):
     for valu in zip(negRel, negAbs):
         i += i
         predOpt.append({
-            "date": str(today + datetime.timedelta(days=i+1)).date().isoformat()),
+            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
