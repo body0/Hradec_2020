@@ -7,12 +7,8 @@ from app.prediction import calculate_R, pessimistic_prediction,\
 from app.conv import pos_to_city
 
 
-@app.after_request
-def after_request(response):
-    header = response.headers
-    header['Access-Control-Allow-Origin'] = '*'
-    return response
 
+print('b')
 
 @app.route('/api')
 def hello_world():

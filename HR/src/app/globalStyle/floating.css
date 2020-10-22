@@ -10,10 +10,10 @@ h2 {
     display: flex;
     flex-direction: column;
     /* max-width: 850px; */
-    max-width: 55rem;
+    max-width: 70rem;
     position: relative;
     width: 97%;
-    margin: 1rem auto;
+    margin: .5rem auto;
     background-color: white;
     /* background-color: rgb(255, 255, 255, 0.8); */
     /* padding: 0 0 .7rem 0; */
@@ -57,19 +57,19 @@ h2 {
 }
 
 .floatingSlpitThirdA {
-    margin: 1rem auto;
+    margin: .5rem auto;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    max-width: 55rem;
+    max-width: 70rem;
     position: relative;
     width: 97%;
     overflow: auto;
 }
 .floatingSlpitThirdB {
-    margin: 1rem auto;
+    margin: .5rem auto;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    max-width: 55rem;
+    max-width: 70rem;
     position: relative;
     width: 97%;
     overflow: auto;

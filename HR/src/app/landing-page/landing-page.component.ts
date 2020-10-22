@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { DataLoaderService } from '../data-loader.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,8 +10,14 @@ export class LandingPageComponent implements AfterViewInit {
 
   @ViewChild('map') MapElm;
   SelctedPosition: { lat: number, lng: number } = null;
+  SelectedPosition = null;
+  Error = '';
 
-  constructor() { }
+  constructor(
+    private dataLoaderService: DataLoaderService
+  ) {
+    dataLoaderService.getDataFromLocation('Brno');
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -37,6 +44,7 @@ export class LandingPageComponent implements AfterViewInit {
           lat: position.lat,
           lng: position.lng
         };
+        this.loadData(position.lat, position.lng);
       });
 
       function addMarker(location) {
@@ -62,9 +70,14 @@ export class LandingPageComponent implements AfterViewInit {
   onEnter() {
 
   }
-
-  initMap() {
-
+  async loadData(lat, lng) {
+    this.Error = '';
+    try {
+      const raw = this.dataLoaderService.getLocationData(lat, lng);
+      console.log(raw);
+      this.SelectedPosition = raw;
+    } catch (err) {
+      this.Error = 'Cannot get city name';
+    }
   }
-
 }

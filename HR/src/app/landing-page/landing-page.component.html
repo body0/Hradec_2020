@@ -10,8 +10,12 @@
   </span>
   <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter()">
 </div>
-<div class="absoluteFooter">
-  <h2>Mlada Boleslav</h2>
+<div class="absoluteFooter" *ngIf="Error">
+  <h2>Error</h2>
+  <pre>{{Error}}</pre>
+</div>
+<div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
+  <h2>{{SelectedPosition.name}}</h2>
   <div class="covidInfo">
     <p>
       <span class="material-icons">coronavirus</span>
@@ -29,5 +33,12 @@
         forward
       </span> -->
     </button>
+  </div>
+</div>
+<div class="absoluteFooter" *ngIf="!Error && !SelectedPosition">
+  <h2>Corona search</h2>
+  <div class="covidInfo">
+    <img src="assets/logo.svg">
+    <!-- <p>text</p> -->
   </div>
 </div>

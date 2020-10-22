@@ -12,6 +12,7 @@ Base.metadata.reflect(engine)
 app = Flask(__name__)
 app.config.from_object(Config)
 
+print('connecting db')
 db_session = scoped_session(sessionmaker(bind=engine))
 CORS(app)
 

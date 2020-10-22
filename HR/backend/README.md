@@ -16,6 +16,12 @@ $ flask run
 - `DB_PASSWORD`
 - `DB_NAME`
 
+- `DB_HOST=144.91.111.198 `
+- `DB_PORT=5432`
+- `DB_USER=admin`
+- `DB_PASSWORD=zvikackaJeVecna`
+- `DB_NAME=corona`
+
 # Routes
 - `/api/by-name`
     - params: `name` of the city
