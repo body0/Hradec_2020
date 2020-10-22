@@ -30,17 +30,17 @@ def pessimistic_prediction(infection, R):
     for i in range(days_to_predict):
         pessimistic_prediction.append(pessimistic_prediction[i] * R)
 
-    return pessimistic_prediction
+    return int(pessimistic_prediction)
 
 
 def optimistic_prediction(infection, R):
-    optimistic_prediction = [infection[0] * R]
+    optimistic_prediction = [infection[starting_position] * R]
 
     for i in range(days_to_predict):
         R = R * optimistic_index
         optimistic_prediction.append(optimistic_prediction[i] * R)
 
-    return optimistic_prediction
+    return int(optimistic_prediction)
 
 def caluculate_risk(population, r, ill):
 	city_risk = (math.log2((population/1300000)*6+2)-1)/4 + 1

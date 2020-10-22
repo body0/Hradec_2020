@@ -1,56 +1,83 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { DataLoaderService } from '../data-loader.service';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['../globalStyle/floating.css', './landing-page.component.css']
+  styleUrls: ['../globalStyle/floating.css', '../globalStyle/bottomButton.css', './landing-page.component.css']
 })
 export class LandingPageComponent implements AfterViewInit {
 
-   @ViewChild('map') child;
+  @ViewChild('map') MapElm;
   SelctedPosition: { lat: number, lng: number } = null;
+  SelectedPosition = null;
+  Error = '';
 
-  constructor() { }
+  constructor(
+    private dataLoaderService: DataLoaderService
+  ) {
+    dataLoaderService.getDataFromLocation('Brno');
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.initMap();
-    }, 1); // TO DO
+      const sub = this; // TO DO
+      const google = (window as any).google;
+      let map;
+      let markers = [];
+      const myLatlng = { lat: 50.036179154236905, lng: 14.452818238135281 };
+      map = new google.maps.Map(this.MapElm.nativeElement, {
+        zoom: 7,
+        center: myLatlng,
+        disableDefaultUI: true,
+        zoomControl: true,
+        streetViewControl: false,
+        Fullscreencontrol: false,
+      });
+
+      // Configure the click listener.
+      map.addListener("click", (event) => {
+        clearMarkers();
+        addMarker(event.latLng);
+        const position = event.latLng.toJSON();
+        sub.SelctedPosition = {
+          lat: position.lat,
+          lng: position.lng
+        };
+        this.loadData(position.lat, position.lng);
+      });
+
+      function addMarker(location) {
+        const marker = new google.maps.Marker({
+          position: location,
+          map: map,
+        });
+        markers.push(marker);
+      }
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+      function setMapOnAll(map) {
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+    }, 10); // TO DO
     // this.initMap();
   }
 
-  initMap() {
-    const sub = this; // TO DO
-    const google = (window as any).google;
-    const myLatlng = { lat: 50.036179154236905, lng: 14.452818238135281 };
-    const map = new google.maps.Map(this.child.nativeElement, {
-      zoom: 7,
-      center: myLatlng,
-    });
-    // Create the initial InfoWindow.
-    let infoWindow = new google.maps.InfoWindow({
-      content: "Click the map to get Lat/Lng!",
-      position: myLatlng,
-    });
-    infoWindow.open(map);
-    // Configure the click listener.
-    map.addListener("click", (mapsMouseEvent) => {
-      // Close the current InfoWindow.
-      infoWindow.close();
-      // Create a new InfoWindow.
-      infoWindow = new google.maps.InfoWindow({
-        position: mapsMouseEvent.latLng,
-      });
-      infoWindow.setContent(
-        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-      );
-      infoWindow.open(map);
-      const position =  mapsMouseEvent.latLng.toJSON();
-      sub.SelctedPosition = {
-        lat: position.lat,
-        lng: position.lng
-      };
-    });
-  }
+  onEnter() {
 
+  }
+  async loadData(lat, lng) {
+    this.Error = '';
+    try {
+      const raw = this.dataLoaderService.getLocationData(lat, lng);
+      console.log(raw);
+      this.SelectedPosition = raw;
+    } catch (err) {
+      this.Error = 'Cannot get city name';
+    }
+  }
 }

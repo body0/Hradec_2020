@@ -1,9 +1,9 @@
-<div class="floatingBackgroud">
+<!-- <div class="floatingBackgroud">
   <div class="top"></div>
   <div class="bottom"></div>
-</div>
+</div> -->
 <div class="floatingContent">
-  <mat-toolbar>
+  <!-- <mat-toolbar>
     <div>
       <span class="material-icons">
         android
@@ -14,14 +14,8 @@
       <span (click)="search.focus()" class="material-icons" style="font-size: 2rem;">
         search
       </span>
-      <!-- <input matInput autocomplete="off" placeholder="Location"> -->
-      <!-- <mat-form-field>
-        <input matInput type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
-      </mat-form-field> -->
       <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
-      <!-- <input matInput type="text" [(ngModel)]="value"> -->
-      <!--   <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->
     </div>
-  </mat-toolbar>
+  </mat-toolbar> -->
   <ng-content></ng-content>
 </div>

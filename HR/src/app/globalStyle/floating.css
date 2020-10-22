@@ -7,11 +7,13 @@ h2 {
     font-weight: 400;
 }
 .floating{
+    display: flex;
+    flex-direction: column;
     /* max-width: 850px; */
-    max-width: 55rem;
+    max-width: 70rem;
     position: relative;
     width: 97%;
-    margin: 1rem auto;
+    margin: .5rem auto;
     background-color: white;
     /* background-color: rgb(255, 255, 255, 0.8); */
     /* padding: 0 0 .7rem 0; */
@@ -21,27 +23,54 @@ h2 {
     overflow: auto;
 }
 .floating > div {
-    margin: .2rem 1rem 1.2rem 1rem;
+    margin: .5rem 1rem .5rem 1rem;
+    height: 100%;
 }
 .floatingHeader {
     margin: 0;
     padding: .6rem .9rem;
-    background-color: var(--header);
-    color: #e0e0e0;
+    background-color: var(--yLight);
+    color: var(--backgroudBottom);
     font-size: 1.2rem;
 }
 .floatingSlpit {
+    /* margin: 1rem auto;
     display: flex;
     max-width: 55rem;
     position: relative;
     width: 97%;
+    overflow: auto; */
 }
-.floatingSlpit > div:not:first-child {
+.floatingSlpit > div {
+    width: 100%;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+.floatingSlpit > div:first-child {
+    margin-left: 0;
+}
+.floatingSlpit > div:last-child {
+    margin-right: 0;
+}
+.floatingSlpitNoSpace > div {
     width: 100%;
 }
-.floatingSlpit > div:not:first-child {
-    margin-right: 1rem;
+
+.floatingSlpitThirdA {
+    margin: .5rem auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    max-width: 70rem;
+    position: relative;
+    width: 97%;
+    overflow: auto;
 }
-.floatingSlpit > div:not:last-child {
-    margin-left: 1rem;
+.floatingSlpitThirdB {
+    margin: .5rem auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 70rem;
+    position: relative;
+    width: 97%;
+    overflow: auto;
 }

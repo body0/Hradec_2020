@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { MaterialModule } from './material/material.module';
 import { GrafInitComponent } from './graf-init/graf-init.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GrafInitComponent } from './graf-init/graf-init.component';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
