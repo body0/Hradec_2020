@@ -12,7 +12,7 @@ if __name__ == '__main__':
                                                     'obyv_muzi', 'obyv_zeny',
                                                     'vek_celkem', 'vek_muzi', 'vek_zeny'])\
             .dropna()
-    pop['nazev_obce'] = pop['nazev_obce'].apply(strip_accents)
+    # pop['nazev_obce'] = pop['nazev_obce'].apply(strip_accents)
     pop.to_csv('./population.csv')
 
     mestske_casti = pd.read_csv('obce/mestske-casti.csv', sep=';')
