@@ -9,7 +9,7 @@ CREATE TABLE pripady (
 );
 
 
-copy pripady(datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/init/pripady2.csv' DELIMITER ';' CSV HEADER;
+copy pripady(datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/init/cases.csv' DELIMITER ';' CSV HEADER;
 
 CREATE TABLE populace (
   id Integer PRIMARY KEY,
@@ -25,4 +25,4 @@ CREATE TABLE populace (
 );
 
 
-copy populace(obyv_celkem, obyv_muzi,obyv_zeny,vek_celkem, vek_muzi, vek_zeny, LAU_1, LAU_2, nazev_obce) FROM ./populace.csv DELIMITER ',' CSV HEADER;
+copy populace(obyv_celkem, obyv_muzi,obyv_zeny,vek_celkem, vek_muzi, vek_zeny, LAU_1, LAU_2, nazev_obce) FROM 'init/population.csv' DELIMITER ',' CSV HEADER;
