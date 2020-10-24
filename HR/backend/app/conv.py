@@ -18,7 +18,7 @@ def city_to_pos(city):
     return(coordinates)
 
 def pos_to_city(lat, lng):
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&result_type=street_address&key={key}"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&language=cs&result_type=street_address&key={key}"
     response = requests.get(url)
     json = response.json()
 
@@ -26,7 +26,7 @@ def pos_to_city(lat, lng):
     string = delete_code(string)
     string = string.split(", ")
 
-    if(string[1] != "Czechia"):
+    if(string[1] != "Česko"):
         return "Pracujeme na tom"
  
     if(string[0] == "Prague"):
@@ -34,5 +34,6 @@ def pos_to_city(lat, lng):
     else:
         return(string[0])
    
-print(city_to_pos("Turnov"))
-#print(pos_to_city(50.07608,14.425262))
+#print(city_to_pos("Turnov"))
+#coord = city_to_pos("Hradec Králové")
+#print(pos_to_city(coord[0], coord[1]))
