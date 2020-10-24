@@ -11,7 +11,7 @@ FROM postgres:latest
 WORKDIR /init
  
 RUN apt-get update -y
-RUN apt-get install -y python3-pip python3-dev
+RUN apt-get install -y python3-pip python3-dev wget unzip
 # RUN apt-get update \
 #   && apt-get install -y python3-pip python3-dev \
 #   && cd /usr/local/bin \
@@ -21,6 +21,6 @@ RUN pip3 install pandas
 
 COPY ./init/parseTables.py parseTables.py
 COPY ./init/setup.sh setup.sh
-RUN ./setup.sh
+RUN chmod +x setup.sh && ./setup.sh
 
 COPY ./init/init.js /docker-entrypoint-initdb.d/
