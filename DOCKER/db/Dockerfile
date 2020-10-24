@@ -23,4 +23,4 @@ COPY ./init/parseTables.py parseTables.py
 COPY ./init/setup.sh setup.sh
 RUN chmod +x setup.sh && ./setup.sh
 
-COPY ./init/init.js /docker-entrypoint-initdb.d/
+COPY ./init/init.sql /docker-entrypoint-initdb.d/
