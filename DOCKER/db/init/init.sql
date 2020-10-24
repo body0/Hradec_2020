@@ -9,7 +9,7 @@ CREATE TABLE pripady (
 );
 
 
-copy pripady(datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/init/cases.csv' DELIMITER ';' CSV HEADER;
+copy pripady(datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/init/cases.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE populace (
   id Integer PRIMARY KEY,
