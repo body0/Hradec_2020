@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.container1 {
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    background-color:blue;
+}
+.column_wrap {position:relative;}
+.col_left {
+	background-color: #212121;
+	width:500px;
+	position:absolute;
+	left:0;top:0;
+	bottom:0;
+	height:auto;
+	display: block;
+}
+
+.col_right {
+	margin-left:500px;
+}
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.container {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 100px;
+}
+
+.container input {
+  font-family: "Inconsolata", monospace;
+  position:absolute;
+  width: 400px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: #F49A0B;
+  color: white;
+  padding: 0 80px 0 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 5px 0 #F49A0B, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+  float: center;
+  opacity: 1;
+  z-index: 8;
+  font-size: large;
+}
+
+.container input::placeholder {
+  color: white;
+  opacity: 0.8;
+  font-size: large;
+  
+}
+.card {
+  z-index: 8;
+  transition: 0.3s;
+  background-color: #303030;
+  height: 10rem;
+  width: 25rem;
+}
+.ButtonOrange {
+    width: 200px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: #F49A0B;
+  color: white;
+  padding: 0 80px 0 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 5px 0 #F49A0B, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 8;
+}
+
+
+</style>
+</head>
+<body>
+    <div class="container1">
+        <div class="col_left">
+            
+            <header style="height: 5rem;color: orange;">Logo</header>
+        <div class="container">
+            <input type="text" placeholder="Hledat obec, město....">
+          </div>
+          <div class="card">
+            <div >
+              <h4><b>John Doe</b></h4> 
+              <p>Architect & Engineer</p> 
+              <button class="ButtonOrange">Zjistit více</button>
+            </div>
+          </div>
+        </div>
+      
+      
+        <div class="col_right"></div>
+      </div>
+
+</body>
+</html>
