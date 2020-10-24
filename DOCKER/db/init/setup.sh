@@ -9,7 +9,8 @@ unzip vyskyty.zip
 wget $ODKAZ_POPULACE -O populace.xlsx
 
 
-python3 parseTables.py
+# python3 parseTables.py
+/usr/bin/python3 parseTables.py
 
 # assuming set PGPASSWORD
 # psql -h 144.91.111.198 -p 5432 -U admin -d covid -c "CREATE TABLE pripady ( \
