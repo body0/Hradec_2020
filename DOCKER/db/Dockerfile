@@ -21,6 +21,6 @@ RUN pip3 install pandas
 
 COPY ./init/parseTables.py parseTables.py
 COPY ./init/setup.sh setup.sh
-RUN setup.sh
+RUN ./setup.sh
 
 COPY ./init/init.js /docker-entrypoint-initdb.d/
