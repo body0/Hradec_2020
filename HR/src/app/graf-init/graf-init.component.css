@@ -101,15 +101,27 @@
 mat-toolbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;    
-    background: var(--header);
-    color: white;
+    align-items: center;
+    background: #F4B400;
+    color: #012B3F;
 }
 mat-toolbar > div {
     display: flex;
-    align-items: center;    
+    align-items: center; 
+    font-size: 1.5rem;
+    font-weight: 100;   
 }
-mat-toolbar > div > * {
+mat-toolbar > .back {
+    border: solid 2px #012B3F;
+    border-radius: .4rem;
+    padding: .2rem;   
+}
+mat-toolbar img {
+    height: 3.7rem;
+    margin-right: .5rem;    
+}
+
+/* mat-toolbar > div > * {
     margin: 0 .3rem; 
 }
 .floatingContent {
@@ -129,7 +141,7 @@ mat-toolbar > div > * {
     display: block;
     border: none;
     background: var(--header);
-   /*  border-bottom: 1px solid white; */
+   border-bottom: 1px solid white;
     color: white;
     max-width: 0;
     transition: max-width .75s ease-out;
@@ -139,4 +151,4 @@ input:focus {
     border-bottom: 2px solid white;
     max-width: 1000px;
     padding: 10px 10px 10px 5px;
- }
+ } */

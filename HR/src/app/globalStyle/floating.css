@@ -63,7 +63,7 @@ h2 {
     max-width: 70rem;
     position: relative;
     width: 97%;
-    overflow: auto;
+    overflow: hidden;
 }
 .floatingSlpitThirdB {
     margin: .5rem auto;
@@ -72,5 +72,5 @@ h2 {
     max-width: 70rem;
     position: relative;
     width: 97%;
-    overflow: auto;
+    overflow: hidden;
 }

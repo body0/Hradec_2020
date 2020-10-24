@@ -7,5 +7,22 @@ FROM postgres:latest
 #COPY --chown=777 ./scripts/backpu.sh /var/db
 #RUN (crontab -l 2>/dev/null; echo "0 23 * * * /var/db/backup.sh") | crontab -
 
-# copy init script
-COPY ./scripts/init.sql /docker-entrypoint-initdb.d/
+
+WORKDIR /init
+ 
+RUN apt-get update -y
+RUN apt-get install -y python3-pip python3-dev wget unzip
+# RUN apt-get update \
+#   && apt-get install -y python3-pip python3-dev \
+#   && cd /usr/local/bin \
+#   && ln -s /usr/bin/python3 python \
+#   && pip3 install --upgrade pip
+RUN pip3 install pandas xlrd
+
+COPY ./init/parseTables.py parseTables.py
+COPY ./init/setup.sh setup.sh
+RUN chmod +x setup.sh && ./setup.sh
+RUN head --lines=5 cases.csv
+RUN head --lines=5 population.csv
+
+COPY ./init/init.sql /docker-entrypoint-initdb.d/

@@ -97,6 +97,23 @@
     <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
   </div>
 </mat-toolbar> -->
+<mat-toolbar>
+  <div (click)="redirectBack()" class="back">
+    <span class="material-icons">
+      arrow_back
+    </span>
+  </div>
+  <div>
+    <img src="assets/logo1.svg" alt="">
+    <span>Cestovateluv pruvodce karantenou</span>
+  </div>
+  <!-- <div>
+    <span (click)="search.focus()" class="material-icons" style="font-size: 2rem;">
+      search
+    </span>
+    <input #search class="input" type="text" autocomplete="off" placeholder="Location" [(ngModel)]="value">
+  </div> -->
+</mat-toolbar>
 <div class="floatingSlpit floatingSlpitThirdA" style="grid-template-columns: 5fr 2fr;">
   <div class="floating">
     <div class="info">
@@ -109,7 +126,7 @@
       </p>
       <mat-divider></mat-divider>
       <p>
-        <span class="description">Populace:</span>
+        <span class="description">Počet obyvatel:</span>
         <span>
           <span class="material-icons">perm_identity</span>
           <span>{{Confinig?.population}}</span>
@@ -117,7 +134,7 @@
       </p>
       <mat-divider></mat-divider>
       <p>
-        <span class="description">Nakažení na 100:</span>
+        <span class="description">Nakažení na 100 obyvatel:</span>
         <span style="color: var(--backgroundWarn)">
           <span class="material-icons">coronavirus</span>
           <span>{{Confinig?.p | number:'1.2-5'}}%</span>
@@ -127,7 +144,9 @@
 
   </div>
   <div class="floating">
-    mapa
+    <div style="margin: 0">
+      <div style="height: 100%; width: 100%;" #map></div>
+    </div>
   </div>
 </div>
 <div class="floating">
@@ -151,10 +170,10 @@
         <span class="material-icons" style="font-weight: bold; margin-left: 1rem;" [ngStyle]="{color: WarningColor}">
           error_outline
         </span>
-        <span>{{Confinig?.cach | number:'1.2-3'}}</span>
+        <span>{{Confinig?.cach | number:'1.2-3'}}%</span>
       </div>
       <span class="infoBigTitle">
-        sance nakazeni
+        Šance nakažení
       </span>
     </div>
   </div>
@@ -222,13 +241,8 @@
           <span class="material-icons">addchart</span>
           <span>{{Confinig?.rel}}</span>
         </span>
-        <span class="smallPart">Nakažení</span>
+        <span class="smallPart">Přírůstky</span>
       </div>
     </div>
   </div>
-</div>
-<div class="absoluteHeader" (click)="redirectBack()">
-  <span class="material-icons">
-    arrow_back
-  </span>
 </div>
