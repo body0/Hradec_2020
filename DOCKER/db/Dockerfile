@@ -24,5 +24,6 @@ COPY ./init/setup.sh setup.sh
 RUN chmod +x setup.sh && ./setup.sh
 RUN sed -i '1s/^/id/' cases.csv
 RUN head --lines=5 cases.csv
+RUN head --lines=5 population.csv
 
 COPY ./init/init.sql /docker-entrypoint-initdb.d/
