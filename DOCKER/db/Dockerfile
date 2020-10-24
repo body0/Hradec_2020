@@ -11,9 +11,9 @@ FROM postgres:latest
 WORKDIR /init
 
 # copy init script
-RUN add-apt-repository -y ppa:deadsnakes/ppa   
+# RUN add-apt-repository -y ppa:deadsnakes/ppa   
 RUN apt-get update -y
-RUN apt-get install -y python3
+RUN apt-get install -y python
 RUN apt-get install -y  pip3
 RUN pip3 install pandas
 
