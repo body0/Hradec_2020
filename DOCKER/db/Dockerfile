@@ -22,6 +22,7 @@ RUN pip3 install pandas xlrd
 COPY ./init/parseTables.py parseTables.py
 COPY ./init/setup.sh setup.sh
 RUN chmod +x setup.sh && ./setup.sh
-RUN head --lines=100 cases.csv
+RUN sed -i 'id' cases.csv
+RUN head --lines=5 cases.csv
 
 COPY ./init/init.sql /docker-entrypoint-initdb.d/
