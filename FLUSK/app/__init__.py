@@ -41,7 +41,7 @@ def pos_to_city(lat, lng):
 
 
 def query(name):
-    name = strip_accents(name)
+    #name = strip_accents(name)
     if name == "Prague":
         name = "Praha"
     print('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')

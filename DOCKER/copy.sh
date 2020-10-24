@@ -18,12 +18,12 @@ echo $fullVersion
 sed -ir -e "s/\(terVersion=\).*/\1$newVersion/" "$PojectRoot/DOCKER/appVersion.txt"
 sed -ir -e "s/\(appVersion:\).*/\1$fullVersion,/" "$PojectRoot/HR/src/environments/environment.prod.ts"
 
-# node
+# python
 rm -f "$PojectRoot/DOCKER/apiService/requirements.txt"
-cp "$PojectRoot/X/requirements.txt" "$PojectRoot/DOCKER/apiService/requirements.txt"
+cp "$PojectRoot/FLUSK/requirements.txt" "$PojectRoot/DOCKER/apiService/requirements.txt"
 
 rm -rf "$PojectRoot/DOCKER/apiService"
-cp -r "$PojectRoot/node/src" "$PojectRoot/DOCKER/apiService/src"
+cp -r "$PojectRoot/FLUSK/app" "$PojectRoot/DOCKER/apiService/app"
 
 # html
 cd "$PojectRoot/HR"
