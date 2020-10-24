@@ -25,4 +25,4 @@ CREATE TABLE populace (
 );
 
 
-copy populace(obyv_celkem, obyv_muzi,obyv_zeny,vek_celkem, vek_muzi, vek_zeny, LAU_1, LAU_2, nazev_obce) FROM 'init/population.csv' DELIMITER ',' CSV HEADER;
+copy populace(id, obyv_celkem, obyv_muzi,obyv_zeny,vek_celkem, vek_muzi, vek_zeny, LAU_1, LAU_2, nazev_obce) FROM 'init/population.csv' DELIMITER ',' CSV HEADER;

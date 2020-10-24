@@ -12,6 +12,9 @@ wget $ODKAZ_POPULACE -O populace.xlsx -q --show-progress
 # python3 parseTables.py
 /usr/bin/python3 parseTables.py
 
+sed -i '1s/^/id/' cases.csv
+sed -i '1s/^/id/' population.csv
+
 # assuming set PGPASSWORD
 # psql -h 144.91.111.198 -p 5432 -U admin -d covid -c "CREATE TABLE pripady ( \
 #   id Integer PRIMARY KEY, \
