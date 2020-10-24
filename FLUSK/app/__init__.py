@@ -28,17 +28,37 @@ print("Database opened successfully")
 def hello_world():
     return 'Hello, World!'
 
-def pos_to_city(lat, lng):
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&result_type=street_address&key={GOOGLE_KEY}"
+def delete_code(string):
+    string = string.split()
+    string.pop(0)
+    string = " ".join(string)
+    return(string)
+
+def city_to_pos(city):
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={city},+CA&key={GOOGLE_KEY}"
     response = requests.get(url)
     json = response.json()
-    string = str(json["plus_code"]["compound_code"]).split(", ")
-    if(string[1] != "Czechia"):
-        return "Pracujeme na tom"
-    string = string[0].split()
-    string.pop(0)
-    return(" ".join(string))
+    lat = float(json["results"][0]["geometry"]["location"]["lat"])
+    lng = float(json["results"][0]["geometry"]["location"]["lng"])
+    coordinates = [lat, lng]
+    return(coordinates)
 
+def pos_to_city(lat, lng):
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&language=cs&result_type=street_address&key={GOOGLE_KEY}"
+    response = requests.get(url)
+    json = response.json()
+
+    string = str(json["plus_code"]["compound_code"])    
+    string = delete_code(string)
+    string = string.split(", ")
+
+    if(string[1] != "Česko"):
+        return "Pracujeme na tom"
+ 
+    if(string[0] == "Prague"):
+        return("Praha")
+    else:
+        return(string[0])
 
 def query(name):
     #name = strip_accents(name)
