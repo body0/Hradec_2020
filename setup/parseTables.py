@@ -1,5 +1,10 @@
-import sys
 import pandas as pd
+import unidecode
+
+
+def strip_accents(string):
+    return unidecode.unidecode(string)
+
 
 if __name__ == '__main__':
     pop = pd.read_excel('./populace.xlsx', names=['LAU_1', 'LAU_2',
@@ -7,6 +12,7 @@ if __name__ == '__main__':
                                                     'obyv_muzi', 'obyv_zeny',
                                                     'vek_celkem', 'vek_muzi', 'vek_zeny'])\
             .dropna()
+    # pop['nazev_obce'] = pop['nazev_obce'].apply(strip_accents)
     pop.to_csv('./population.csv')
 
     mestske_casti = pd.read_csv('obce/mestske-casti.csv', sep=';')
