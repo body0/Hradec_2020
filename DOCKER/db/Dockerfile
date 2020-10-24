@@ -11,8 +11,8 @@ FROM postgres:latest
 WORKDIR /init
 
 # copy init script
-RUN apt install -y python3.8
-RUN apt install -y  pip3
+RUN apt-get install -y python3.8
+RUN apt-get install -y  pip3
 RUN pip3 install pandas
 
 COPY ./init/parseTables.py parseTables.py
