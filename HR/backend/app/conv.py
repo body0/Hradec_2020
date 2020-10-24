@@ -8,6 +8,15 @@ def delete_code(string):
     string = " ".join(string)
     return(string)
 
+def city_to_pos(city):
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={city},+CA&key={key}"
+    response = requests.get(url)
+    json = response.json()
+    lat = float(json["results"][0]["geometry"]["location"]["lat"])
+    lng = float(json["results"][0]["geometry"]["location"]["lng"])
+    coordinates = [lat, lng]
+    return(coordinates)
+
 def pos_to_city(lat, lng):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&result_type=street_address&key={key}"
     response = requests.get(url)
@@ -24,5 +33,6 @@ def pos_to_city(lat, lng):
         return("Praha")
     else:
         return(string[0])
-    
+   
+print(city_to_pos("Turnov"))
 #print(pos_to_city(50.07608,14.425262))
