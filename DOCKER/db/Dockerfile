@@ -11,6 +11,7 @@ FROM postgres:latest
 WORKDIR /init
 
 # copy init script
+RUN apt-get apt update
 RUN apt-get install -y python3.8
 RUN apt-get install -y  pip3
 RUN pip3 install pandas
