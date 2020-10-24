@@ -17,7 +17,7 @@ RUN apt-get install -y python3-pip python3-dev wget unzip
 #   && cd /usr/local/bin \
 #   && ln -s /usr/bin/python3 python \
 #   && pip3 install --upgrade pip
-RUN pip3 install pandas
+RUN pip3 install pandas xlrd
 
 COPY ./init/parseTables.py parseTables.py
 COPY ./init/setup.sh setup.sh
