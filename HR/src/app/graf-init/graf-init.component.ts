@@ -11,6 +11,7 @@ export class GrafInitComponent implements AfterViewInit {
 
   @ViewChild('grafAbs') grafAbs;
   @ViewChild('grafRel') grafRel;
+  @ViewChild('map') map;
   Confinig;
   Error = '';
   WarningColor = '';
@@ -23,8 +24,8 @@ export class GrafInitComponent implements AfterViewInit {
   }
 
   async loadData() {
-    // const data = this.dataLoaderService.getLastLoadedInfo();
-    const data = await this.dataLoaderService.getDataFromLocation('Brno');
+    const data = this.dataLoaderService.getLastLoadedInfo();
+    // const data = await this.dataLoaderService.getDataFromLocation('Brno');
     if (!data) {
       this.Error = 'No data To Load';
       return;
@@ -39,6 +40,10 @@ export class GrafInitComponent implements AfterViewInit {
     }
     this.createRelative();
     this.createAbsolute();
+    const position = this.dataLoaderService.getLastPositionInfo();
+    setTimeout(() => {
+      this.initMap(position);
+    }, 100);
   }
 
   createAbsolute() {
@@ -111,6 +116,27 @@ export class GrafInitComponent implements AfterViewInit {
         chart.draw(data, google.charts.Line.convertOptions(options));
       });
     }, 100); // TO DO
+  }
+
+  initMap(position) {
+    // The location of Uluru
+    const position_city = position;
+    // The map, centered at Uluru
+    const google = (window as any).google;
+    const map = new google.maps.Map(this.map.nativeElement, {
+      zoom: 8,
+      disableDefaultUI: true,
+      zoomControl: false,
+      draggable: false,
+      streetViewControl: false,
+      Fullscreencontrol: false,
+      center: position_city,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+      position: position_city,
+      map: map,
+    });
   }
 
   ngAfterViewInit() {

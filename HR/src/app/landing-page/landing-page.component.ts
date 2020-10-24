@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { DataLoaderService } from '../data-loader.service';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-landing-page',
@@ -14,8 +15,11 @@ export class LandingPageComponent implements AfterViewInit {
   Error = '';
 
   constructor(
-    private dataLoaderService: DataLoaderService
-  ) { }
+    private dataLoaderService: DataLoaderService,
+    public router: Router
+  ) {
+    
+   }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -42,6 +46,7 @@ export class LandingPageComponent implements AfterViewInit {
           lat: position.lat,
           lng: position.lng
         };
+        console.log(sub.SelctedPosition);
         this.loadData(position.lat, position.lng);
       });
 
@@ -65,17 +70,34 @@ export class LandingPageComponent implements AfterViewInit {
     // this.initMap();
   }
 
-  onEnter() {
-
-  }
   async loadData(lat, lng) {
     this.Error = '';
     try {
       const raw = await this.dataLoaderService.getLocationData(lat, lng);
       console.log('x', raw);
       this.SelectedPosition = raw;
+      if (this.SelectedPosition.error) {
+        throw '';
+      }
     } catch (err) {
       this.Error = 'Cannot get city name';
     }
+  }
+  async onEnter(name) {
+    this.Error = '';
+    try {
+      const raw = await this.dataLoaderService.getDataFromLocation(name);
+      console.log('x', raw);
+      this.SelectedPosition = raw;
+      if (this.SelectedPosition.error) {
+        throw '';
+      }
+    } catch (err) {
+      this.Error = 'Cannot get city name';
+    }
+  }
+
+  redirectFront() {
+    this.router.navigate(['/initGraf']);
   }
 }

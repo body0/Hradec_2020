@@ -19,11 +19,18 @@ export class DataLoaderService {
   };
 
   private LastLoadedInfo = null;
+  private LastPosition = {
+    lat: 0,
+    lng: 0
+  };
 
   constructor(private http: HttpClient, ) {
     // this.getDataFromLocation('Brno');
   }
 
+  getLastPositionInfo() {
+    return this.LastPosition;
+  }
   getLastLoadedInfo() {
     return this.LastLoadedInfo;
   }
@@ -51,6 +58,7 @@ export class DataLoaderService {
         lat: xCord,
         lng: yCord
       };
+      this.LastPosition = body;
       const ret: any = await this.http.post(
         this.ApiOrigin + this.LocationRoute, JSON.stringify(body),
         this.httpOptions).toPromise();
