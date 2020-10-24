@@ -22,6 +22,10 @@ sed -ir -e "s/\(appVersion:\).*/\1$fullVersion,/" "$PojectRoot/HR/src/environmen
 rm -f "$PojectRoot/DOCKER/apiService/requirements.txt"
 cp "$PojectRoot/FLUSK/requirements.txt" "$PojectRoot/DOCKER/apiService/requirements.txt"
 
+if [[ -f "$PojectRoot/FLUSK/app/__pycache__" ]]; then
+    rm -r "$PojectRoot/FLUSK/app/__pycache__"
+fi
+
 rm -rf "$PojectRoot/DOCKER/apiService"
 cp -r "$PojectRoot/FLUSK/app" "$PojectRoot/DOCKER/apiService/app"
 

@@ -21,8 +21,9 @@ GOOGLE_KEY = os.environ.get('GOOGLE_KEY') or 'nic tu neni'
 
 con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
 # con = psycopg2.connect(database="covid", user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
-print("Database opened successfully")
+print("Database opened successfully!!!")
 
+requestCounter = 0
 
 @app.route('/api')
 def hello_world():
@@ -41,10 +42,9 @@ def pos_to_city(lat, lng):
 
 
 def query(name):
+    global requestCounter
     #name = strip_accents(name)
-    if name == "Prague":
-        name = "Praha"
-    print('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
+    print(f'first q {requestCounter}')
     cur = con.cursor()
     cur.execute('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
     rowsA = cur.fetchall()
@@ -52,6 +52,7 @@ def query(name):
     if len(rowsA) == 0:
         return jsonify({'error': 'City not found! ('+ name+ ')'})
 
+    print(f'second q {requestCounter}')
     cityId = rowsA[0][2]
     cur = con.cursor()
     cur.execute('SELECT * from pripady where obec_kod = \''+cityId +'\' ORDER BY datum DESC limit 14;')
@@ -59,6 +60,8 @@ def query(name):
 
     if rows[0][3] == 0:
         rows = rows[1:]
+
+    print(f'run {requestCounter}')
 
     caseCurent = []
     for rowLine in rows:
@@ -121,7 +124,6 @@ def query(name):
 
     percentToCatch = caluculate_risk(population, r_pred, caseCurent[0]['abs'])
 
-    print(rowsA[0])
     return jsonify({
         "name": cityName,
         "population": population,
@@ -144,11 +146,16 @@ def query_by_name():
 
 @app.route('/api/by-location', methods=["POST"])
 def query_by_location():
+    global requestCounter
+    print(f'accepted {requestCounter}')
     json_data = request.json
     lat = json_data["lat"]
     lng = json_data["lng"]
     city = pos_to_city(lat, lng)
-    return query(city)
+    print(f'translated {requestCounter}')
+    ret = query(city)
+    requestCounter = requestCounter + 1
+    return ret
 
 
 if __name__ == '__main__':
