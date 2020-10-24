@@ -9,8 +9,7 @@ FROM postgres:latest
 
 
 WORKDIR /init
-
-RUN add-apt-repository -y ppa:deadsnakes/ppa   
+ 
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python3-dev
 # RUN apt-get update \
