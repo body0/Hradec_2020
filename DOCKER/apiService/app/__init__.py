@@ -20,18 +20,8 @@ DB_USER = os.environ.get('DB_USER') or 'default'
 DB_PASSWORD = os.environ.get('DB_PASSWORD') or 'password'
 GOOGLE_KEY = os.environ.get('GOOGLE_KEY') or 'nic tu neni'
 
-print(f'ENV: {PORT} {DB_HOST} {DB_PORT} {DB_NAME} {DB_USER} {DB_PASSWORD} {GOOGLE_KEY}' )
-
-
-try:
-    # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-    con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
-    print("Database opened successfully!!!")
-except Exception as e:
-    raise Exception(f'Cannot connect to db: {e}')
-    sys.exit(1)
-
 requestCounter = 0
+con = None
 
 @app.route('/api')
 def hello_world():
@@ -71,7 +61,7 @@ def pos_to_city(lat, lng):
 
 def query(name):
     global requestCounter
-    print(f'first q {requestCounter}')
+    print(f'first q {requestCounter}', file=sys.stdout, flush=True)
     try:
         cur = con.cursor()
         cur.execute('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
@@ -83,20 +73,25 @@ def query(name):
     if len(rowsA) == 0:
         return jsonify({'error': 'City not found! ('+ name+ ')'})
 
-    print(f'second q {requestCounter}')
-    cityId = rowsA[0][2]
+    print(f'second q {requestCounter}', file=sys.stdout, flush=True)
+    cityId = rowsA[0][8]
     try:
         cur = con.cursor()
-        cur.execute('SELECT * from pripady where obec_kod = \''+cityId +'\' ORDER BY datum DESC limit 14;')
+        cur.execute('SELECT * from pripady where obec_kod = \''+ str(cityId) +'\' ORDER BY datum DESC limit 14;')
         rows = cur.fetchall()
     except Exception as e:
         print(f'Err2: {e}')
         raise e
-
+    
+    print('SELECT * from pripady where obec_kod = \''+ str(cityId) +'\' ORDER BY datum DESC limit 14;')
+    print(f'row {rows}', file=sys.stdout, flush=True)
     if rows[0][3] == 0:
         rows = rows[1:]
 
-    print(f'run {requestCounter}')
+    print(f'run {requestCounter}', file=sys.stdout, flush=True)
+
+    population = rowsA[0][1]
+    cityName = rowsA[0][9]
 
     caseCurent = []
     for rowLine in rows:
@@ -153,8 +148,6 @@ def query(name):
         })
 
     caseCurent.reverse()
-    population = rowsA[0][4]
-    cityName = rowsA[0][3]
     percentCovid = caseCurent[0]['abs'] / population * 100
 
     percentToCatch = caluculate_risk(population, r_pred, caseCurent[0]['abs'])
@@ -192,6 +185,18 @@ def query_by_location():
     requestCounter = requestCounter + 1
     return ret
 
+def init():
+    global con
+    print(f'ENV: {PORT} {DB_HOST} {DB_PORT} {DB_NAME} {DB_USER} {DB_PASSWORD} {GOOGLE_KEY}' )
+
+    try:
+        # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
+        con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
+        print("Database opened successfully!!!")
+    except Exception as e:
+        raise Exception(f'Cannot connect to db: {e}')
+        sys.exit(1)
 
 if __name__ == '__main__':
-    app.run(port=PORT)
+    init()
+    app.run(debug=True, use_debugger=False, use_reloader=False, host='0.0.0.0', port=PORT)

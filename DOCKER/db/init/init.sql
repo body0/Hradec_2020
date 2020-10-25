@@ -1,5 +1,13 @@
 CREATE DATABASE covid;
 
+CREATE USER apiuser WITH PASSWORD 'yrpbvR2mcfLIKVpNLr';
+GRANT ALL PRIVILEGES ON DATABASE covid TO apiuser;
+
+CREATE USER guetUser;
+GRANT CONNECT ON DATABASE covid TO guetUser;
+
+\connect covid
+
 CREATE TABLE pripady (
   id SERIAL PRIMARY KEY,
   datum DATE,

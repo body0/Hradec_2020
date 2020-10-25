@@ -31,9 +31,9 @@ services:
       - DB_HOST=hradec_db
       - DB_NAME=covid
     expose:
-      - '4000'
+      - '3102'
     ports:                       #TEST# 
-      - 4400:4000                #TEST# 
+      - 3102:3102                #TEST# 
     env_file:
       - ./env/secrets.env
     deploy:
@@ -52,8 +52,9 @@ services:
       ports: 
         - 3101:3101 
       networks:
-        - jopka_localhost_infrastructure_net
+        - hradec_localhost_infrastructure_net
 
 networks:
-  jopka_localhost_infrastructure_net:
+  hradec_localhost_infrastructure_net:
+    driver: bridge
       

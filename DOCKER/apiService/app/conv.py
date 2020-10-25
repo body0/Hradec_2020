@@ -9,7 +9,7 @@ def delete_code(string):
     return(string)
 
 def city_to_pos(city):
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={city},+CA&key={key}"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={city},+CA&key={GOOGLE_KEY}"
     response = requests.get(url)
     json = response.json()
     lat = float(json["results"][0]["geometry"]["location"]["lat"])
@@ -18,7 +18,7 @@ def city_to_pos(city):
     return(coordinates)
 
 def pos_to_city(lat, lng):
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&language=cs&result_type=street_address&key={key}"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lng}&location_type=ROOFTOP&language=cs&result_type=street_address&key={GOOGLE_KEY}"
     response = requests.get(url)
     json = response.json()
 
