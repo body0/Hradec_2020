@@ -87,15 +87,15 @@ export class GrafInitComponent implements AfterViewInit {
       ['', '', '', '']
     ];
     this.Confinig.caseCurrent.forEach(elm => {
-      const subArr = [elm.date, null, null, elm.rel];
+      const subArr = [this.formatDate(elm.date), null, null, elm.rel];
       grafData.push(subArr);
     });
     const firstFuture = this.Confinig.caseFuture[0];
     // const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
-    grafData.push([firstFuture.date, firstFuture.neg.rel, firstFuture.opt.rel, firstFuture.opt.rel]);
+    grafData.push([this.formatDate(firstFuture.date), firstFuture.neg.rel, firstFuture.opt.rel, firstFuture.opt.rel]);
     for (let i = 1; i < this.Confinig.caseFuture.length; i++) {
       const elm = this.Confinig.caseFuture[i];
-      const subArr = [elm.date, elm.neg.rel, elm.opt.rel, null];
+      const subArr = [this.formatDate(elm.date), elm.neg.rel, elm.opt.rel, null];
       grafData.push(subArr);
     }
 
@@ -103,19 +103,22 @@ export class GrafInitComponent implements AfterViewInit {
       const google = (window as any).google;
       google.charts.load('current', { 'packages': ['line'] });
       google.charts.setOnLoadCallback(() => {
-        var data = google.visualization.arrayToDataTable(grafData);
+        let data = google.visualization.arrayToDataTable(grafData);
 
-        var options = {
+        let options = {
           // title: 'Company Performance',
           curveType: 'function',
           legend: { position: 'none' }
         };
 
-        var chart = new google.charts.Line(this.grafRel.nativeElement);
+        let chart = new google.charts.Line(this.grafRel.nativeElement);
 
         chart.draw(data, google.charts.Line.convertOptions(options));
       });
     }, 100); // TO DO
+  }
+  formatDate(date: Date): string {
+    return date.getMonth() + '. ' + date.getDate() + '.';
   }
 
   initMap(position) {

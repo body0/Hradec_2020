@@ -124,7 +124,7 @@ def query(name):
     predNeg = []
     for valu in zip(optRel, optAbs):
         predNeg.append({
-            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
+            "date": str((today + datetime.timedelta(days=i)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -132,7 +132,7 @@ def query(name):
     predOpt = []
     for valu in zip(negRel, negAbs):
         predOpt.append({
-            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
+            "date": str((today + datetime.timedelta(days=i)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -155,8 +155,8 @@ def query(name):
     return jsonify({
         "name": cityName,
         "population": population,
-        "abs": caseCurent[0]['abs'],
-        "rel": caseCurent[0]['rel'],
+        "abs": caseCurent[len(caseCurent) -1]['abs'],
+        "rel": caseCurent[len(caseCurent) -1]['rel'],
         "caseCurrent": caseCurent,
         "caseFuture": caseFuture,
         "r": r_pred,
