@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataLoaderService } from '../data-loader.service';
 
@@ -19,15 +19,34 @@ export class GrafInitComponent implements AfterViewInit {
   ShowMoreInfoA = false;
   ShowMoreInfoB = false;
 
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    this.closePop();
+  }
+
   constructor(
     private dataLoaderService: DataLoaderService,
     public router: Router) {
     this.loadData();
   }
 
+  closePop() {
+    this.ShowMoreInfoA = false;
+    this.ShowMoreInfoB = false;
+  }
+  openPopA() {
+    this.ShowMoreInfoA = true;
+  }
+  openPopB() {
+    this.ShowMoreInfoB = true;
+  }
+
+
   async loadData() {
-    // const data = this.dataLoaderService.getLastLoadedInfo();
-    const data = await this.dataLoaderService.getDataFromLocation('Brno');
+    let data = this.dataLoaderService.getLastLoadedInfo();
+    if (!data) {
+      data = await this.dataLoaderService.getDataFromLocation('Brno');
+    }
+
     if (!data) {
       this.Error = 'No data To Load';
       return;
@@ -147,7 +166,7 @@ export class GrafInitComponent implements AfterViewInit {
   }
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
-    return date.getMonth() + '. ' + date.getDate() + '.';
+    return date.getDate() + '.' + date.getMonth() + '. ';
   }
 
   initMap(position) {

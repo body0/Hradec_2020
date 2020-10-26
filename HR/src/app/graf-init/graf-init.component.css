@@ -104,7 +104,9 @@
 .moreInfoContent {
     position: absolute;
     padding: 1rem;
-    box-shadow: 1px 1px 0px 2px #555, 2px 2px 5px #333;
+    /* box-shadow: 1px 1px 0px 2px #555, 2px 2px 5px #333; */
+    box-shadow: 0 6px 12px 0 rgba(75,168,46,0.20), 0 2px 4px 0 rgba(75,168,46,0.27);
+    border-bottom: solid 1px #555;
     top: calc(100% - 2rem);
     background: white;
     z-index: 100;
@@ -112,6 +114,7 @@
     left: 3rem;
     right: 3rem;
     box-sizing: border-box;
+    z-index: 10;
 }
 .moreInfoContent > h2 {
     font-size: 1.3rem;
@@ -128,6 +131,21 @@
 .moreInfoContent > p strong {
     font-weight: 500;
     color: var(--header);
+}
+.moreInfoContentAbsoluteBackgroudn {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333;
+    opacity: .5;
+    z-index: 1;
+}
+.closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;  
 }
 /* .moreInfoText:hover::after {
     position: absolute;
@@ -163,7 +181,7 @@ mat-toolbar img {
     margin: 5rem auto 2.5rem auto;
     width: 80%;
     max-width: 60rem;
-    color: white;
+    color: #ddd;
 }
 .footerSpaces {
     margin: 1rem 2rem;
@@ -180,9 +198,11 @@ mat-toolbar img {
 .footerContent > div {
     display: flex;
     flex-direction: column;
+    margin-left: .5rem;
 }
 .footerContent > div > p {
     font-size: 1.2rem;
+    font-weight: 100;
     margin: 0 .3rem;
 }
 .footerContent > div > p::before {

@@ -164,12 +164,14 @@
       <span class="infoBigTitle">
         Reprodukční číslo
       </span>
-      <span class="moreInfo" (click)="ShowMoreInfoA = !ShowMoreInfoA; ShowMoreInfoB = false;">
+      <span class="moreInfo" (click)="openPopA()">
         <span class="moreInfoText">Více informací</span>
         <span class="material-icons">
           info
         </span>
-        <div class="moreInfoContent" *ngIf="ShowMoreInfoA">
+      </span>
+      <div *ngIf="ShowMoreInfoA">
+        <div class="moreInfoContent">
           <h2>
             <span>Reprodukční číslo</span>
           </h2>
@@ -179,8 +181,12 @@
               čísla R udává kolik lidí je nakažený schopný nakazit.</strong> Příklad první den máme 1 nakaženého a
             reprodukční číslo je 1. Jak se tedy bude epidemie vyvijet: 1 2 4 8 16 32 64 ....
           </p>
+          <span class=" closeButton material-icons" (click)="closePop()">
+            clear
+          </span>
         </div>
-      </span>
+        <div class="moreInfoContentAbsoluteBackgroudn" (click)="closePop()"></div>
+      </div>
     </div>
     <div class="infoLine"></div>
     <div>
@@ -193,12 +199,14 @@
       <span class="infoBigTitle">
         Šance nakažení
       </span>
-      <span class="moreInfo" (click)="ShowMoreInfoB = !ShowMoreInfoB; ShowMoreInfoA = false;">
+      <span class="moreInfo" (click)="openPopB()">
         <span class="moreInfoText">Více informací</span>
         <span class="material-icons">
           info
         </span>
-        <div class="moreInfoContent" *ngIf="ShowMoreInfoB">
+      </span>
+      <div *ngIf="ShowMoreInfoB">
+        <div class="moreInfoContent">
           <h2>
             <span>Šance na nakažení</span>
           </h2>
@@ -206,8 +214,12 @@
             Šance na nakažení - Touto hodnotou je myšlen procentuální odhad rizika nakažení v této oblasti.
             <strong>To znamená jaké je riziko, že se zde nakazíte pokud sem budete cestovat.</strong>
           </p>
+          <span class=" closeButton material-icons" (click)="closePop()">
+            clear
+          </span>
         </div>
-      </span>
+        <div class="moreInfoContentAbsoluteBackgroudn" (click)="closePop()"></div>
+      </div>
     </div>
   </div>
 </div>

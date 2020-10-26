@@ -41,11 +41,11 @@
     <div class="sideSearch">
       <div>
         <div class="sideSearchInputWraper">
-          <input #searchSide class="sideSearchInput" type="text" (keyup.enter)="onEnter(search.value)">
+          <input #searchSide class="sideSearchInput" pattern=".+"  type="text" required (keyup.enter)="onEnter(searchSide.value)">
           <label class="sideSearchInputLabel">Název obce</label>
         </div>
 
-        <button mat-raised-button class="forwardButton" (keyup.enter)="onEnter(search.value)">
+        <button mat-raised-button class="forwardButton" (click)="onEnter(searchSide.value)">
           <span>Vyhledej město</span>
         </button>
       </div>

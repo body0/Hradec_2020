@@ -18,7 +18,7 @@ export class LandingPageComponent implements AfterViewInit {
     private dataLoaderService: DataLoaderService,
     public router: Router
   ) {
-
+    this.onEnter('Praha');
   }
 
   ngAfterViewInit() {
@@ -235,9 +235,15 @@ export class LandingPageComponent implements AfterViewInit {
         ]
       });
 
+      let infoWindow = new google.maps.InfoWindow({
+        content: "Klikni na mapu.",
+        position: myLatlng,
+      });
+      infoWindow.open(map);
 
       // Configure the click listener.
       map.addListener("click", (event) => {
+        infoWindow.close();
         clearMarkers();
         addMarker(event.latLng);
         const position = event.latLng.toJSON();

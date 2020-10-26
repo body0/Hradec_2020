@@ -64,15 +64,15 @@
     border: none;
     background: transparent;
     border-bottom: solid 1px var(--yLight);
-    padding: 3px;
+    padding: 5px;
     width: 100%;
     box-sizing: border-box;
 }
 .sideSearchInput:focus { 
     outline: none;
-    padding: 7px;
+    /* padding: 7px; */
  }
-.sideSearchInput:focus ~ label {
+.sideSearchInput:focus ~ label, .sideSearchInput:valid ~ label {
     color: var(--yLight);
     top: -1rem;
     font-size: 14px;
