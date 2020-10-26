@@ -12,7 +12,7 @@
     <div class="cityList">
       <div class="city"  *ngIf="Error">
         <h2>Ouha</h2>
-        <p>Toto místo ještě nepoznal jsem. Zkus prosím místo jiné</p>
+        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit.</p>
       </div>
       <div class="city" *ngIf="!Error && SelectedPosition">
         <h2>{{SelectedPosition.name}}</h2>
@@ -62,7 +62,7 @@
 <div class="absoluteFooter" *ngIf="Error">
   <div class="city">
     <h2>Ouha</h2>
-        <p>Toto místo ještě nepoznal jsem. Zkus prosím místo jiné</p>
+        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit.</p>
   </div>
 </div>
 <!-- <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
