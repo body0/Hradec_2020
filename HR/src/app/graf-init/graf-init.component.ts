@@ -77,7 +77,7 @@ export class GrafInitComponent implements AfterViewInit {
           // title: 'Company Performance',
           curveType: 'function',
           legend: { position: 'none' },
-          backgroundColor: {
+          /* backgroundColor: {
             fill: '#eee',
             fillOpacity: 1
           },
@@ -86,7 +86,7 @@ export class GrafInitComponent implements AfterViewInit {
               fill: '#eee',
               fillOpacity: 1
             },
-          },
+          }, */
           /* titleTextStyle: { color: '#F4B400' },
           hAxis: {
             color: '#F4B400',
@@ -127,7 +127,7 @@ export class GrafInitComponent implements AfterViewInit {
           // title: 'Company Performance',
           curveType: 'function',
           legend: { position: 'none' },
-          backgroundColor: {
+          /* backgroundColor: {
             fill: '#eee',
             fillOpacity: 1
           },
@@ -136,7 +136,7 @@ export class GrafInitComponent implements AfterViewInit {
               fill: '#eee',
               fillOpacity: 1
             },
-          },
+          }, */
         };
 
         let chart = new google.charts.Line(this.grafRel.nativeElement);

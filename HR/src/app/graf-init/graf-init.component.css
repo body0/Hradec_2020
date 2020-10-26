@@ -114,12 +114,11 @@
     box-sizing: border-box;
 }
 .moreInfoContent > h2 {
-    font-size: 1.7rem;
-    margin-bottom: 1rem;
-    margin: .3rem 0 1.5rem 0;
+    font-size: 1.3rem;
+    margin: .3rem 0 1rem 0;
 }
 .moreInfoContent > p {
-    font-size: 1.35rem;
+    font-size: 1rem;
     font-weight: 100;
     margin-left: .8rem;
     padding-left: 1rem;

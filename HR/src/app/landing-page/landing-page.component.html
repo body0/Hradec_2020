@@ -4,19 +4,24 @@
   </div>
 </div> -->
 <div class="mapSideContaier">
- <!--  <div class="siderRoot">
+  <div class="siderRoot">
     <div class="sideTitle">
+      <img src="assets/logo1.svg" alt="">
       <h2>Cestovatelův průvodce karanténou</h2>
     </div>
     <div class="cityList">
-      <div class="city">
-        <h2>Praha</h2>
+      <div class="city"  *ngIf="Error">
+        <h2>Chyba</h2>
+        <p>Informaci, kterou hled8te se n8m nepoda5i</p>
+      </div>
+      <div class="city" *ngIf="!Error && SelectedPosition">
+        <h2>{{SelectedPosition.name}}</h2>
         <div class="info">
           <p>
             <span class="description">Nakžení celkem:</span>
             <span>
               <span class="material-icons">coronavirus</span>
-              <span>5000</span>
+              <span>{{SelectedPosition.abs}}</span>
             </span>
           </p>
           <mat-divider></mat-divider>
@@ -24,7 +29,7 @@
             <span class="description">Nově nakažení:</span>
             <span>
               <span class="material-icons">addchart</span>
-              <span>50</span>
+              <span>{{SelectedPosition.rel}}</span>
             </span>
           </p>
         </div>
@@ -33,7 +38,19 @@
         </button>
       </div>
     </div>
-  </div> -->
+    <div class="sideSearch">
+      <div>
+        <div class="sideSearchInputWraper">
+          <input #searchSide class="sideSearchInput" type="text" (keyup.enter)="onEnter(search.value)">
+          <label class="sideSearchInputLabel">Název obce</label>
+        </div>
+
+        <button mat-raised-button class="forwardButton" (keyup.enter)="onEnter(search.value)">
+          <span>Vyhledej město</span>
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="map" #map></div>
 </div>
 <!-- <div class="absoluteHeader" (click)="search.focus()" >
@@ -43,10 +60,12 @@
   <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter(search.value)">
 </div> -->
 <div class="absoluteFooter" *ngIf="Error">
-  <h2></h2>
-  <pre style="margin: .5rem; font-size: 1.5rem;">Nemohu najít požadované místo</pre>
+  <div class="city">
+    <h2>Chyba</h2>
+    <p>Nemohu najít požadované místo</p>
+  </div>
 </div>
-<div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
+<!-- <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
   <h2>{{SelectedPosition.name}}</h2>
   <div class="covidInfo">
     <p>
@@ -61,17 +80,42 @@
   <div class="forwardButtonWraper">
     <button mat-raised-button class="forwardButton" (click)="redirectFront()">
       <span>Více informací</span>
-      <!-- <span class="material-icons">
-        forward
-      </span> -->
+    </button>
+  </div>
+</div> -->
+<div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
+  <div class="city">
+    <h2>{{SelectedPosition.name}}</h2>
+    <div class="info">
+      <p>
+        <span class="description">Nakžení celkem:</span>
+        <span>
+          <span class="material-icons">coronavirus</span>
+          <span>{{SelectedPosition.abs}}</span>
+        </span>
+      </p>
+      <mat-divider></mat-divider>
+      <p>
+        <span class="description">Nově nakažení:</span>
+        <span>
+          <span class="material-icons">addchart</span>
+          <span>{{SelectedPosition.rel}}</span>
+        </span>
+      </p>
+    </div>
+    <button mat-raised-button class="forwardButton" (click)="redirectFront()">
+      <span>Více informací</span>
     </button>
   </div>
 </div>
 <div class="container">
-  <input #search type="text" placeholder="Search..."  (keyup.enter)="onEnter(search.value)">
+  <input #search type="text" placeholder="Název obce" (keyup.enter)="onEnter(search.value)">
   <div class="search">
-    <span class="material-icons">
+    <span class="searchIcon material-icons">
       search
+    </span>
+    <span class="crossIcon material-icons">
+      clear
     </span>
   </div>
 </div>
