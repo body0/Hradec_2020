@@ -11,14 +11,14 @@
     </div>
     <div class="cityList">
       <div class="city"  *ngIf="Error">
-        <h2>Chyba</h2>
-        <p>Informaci, kterou hled8te se n8m nepoda5i</p>
+        <h2>Ouha</h2>
+        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit.</p>
       </div>
       <div class="city" *ngIf="!Error && SelectedPosition">
         <h2>{{SelectedPosition.name}}</h2>
         <div class="info">
           <p>
-            <span class="description">Nakžení celkem:</span>
+            <span class="description">Nakžených celkem:</span>
             <span>
               <span class="material-icons">coronavirus</span>
               <span>{{SelectedPosition.abs}}</span>
@@ -46,7 +46,7 @@
         </div>
 
         <button mat-raised-button class="forwardButton" (click)="onEnter(searchSide.value)">
-          <span>Vyhledej město</span>
+          <span>yhledej obec</span>
         </button>
       </div>
     </div>
@@ -61,8 +61,8 @@
 </div> -->
 <div class="absoluteFooter" *ngIf="Error">
   <div class="city">
-    <h2>Chyba</h2>
-    <p>Informaci, kterou hled8te se n8m nepoda5i</p>
+    <h2>Ouha</h2>
+        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit.</p>
   </div>
 </div>
 <!-- <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
@@ -88,7 +88,7 @@
     <h2>{{SelectedPosition.name}}</h2>
     <div class="info">
       <p>
-        <span class="description">Nakžení celkem:</span>
+        <span class="description">Nakžených celkem:</span>
         <span>
           <span class="material-icons">coronavirus</span>
           <span>{{SelectedPosition.abs}}</span>
