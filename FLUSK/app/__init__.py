@@ -81,11 +81,8 @@ def query(name):
         print(f'Err2: {e}')
         raise e
     
-    print('SELECT * from pripady where obec_kod = \''+ str(cityId) +'\' ORDER BY datum DESC limit 14;')
-    print(f'row {rows}', file=sys.stdout, flush=True)
     if rows[0][3] == 0:
         rows = rows[1:]
-    print(f'row2 {rows}', file=sys.stdout, flush=True)
 
     population = rowsA[0][1]
     cityName = rowsA[0][9]

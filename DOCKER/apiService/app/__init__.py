@@ -61,7 +61,6 @@ def pos_to_city(lat, lng):
 
 def query(name):
     global requestCounter
-    print(f'first q {requestCounter}', file=sys.stdout, flush=True)
     try:
         cur = con.cursor()
         cur.execute('SELECT * from populace where LOWER(nazev_obce) LIKE LOWER(\''+name +'\');')
@@ -73,7 +72,6 @@ def query(name):
     if len(rowsA) == 0:
         return jsonify({'error': 'City not found! ('+ name+ ')'})
 
-    print(f'second q {requestCounter}', file=sys.stdout, flush=True)
     cityId = rowsA[0][8]
     try:
         cur = con.cursor()
@@ -83,12 +81,8 @@ def query(name):
         print(f'Err2: {e}')
         raise e
     
-    print('SELECT * from pripady where obec_kod = \''+ str(cityId) +'\' ORDER BY datum DESC limit 14;')
-    print(f'row {rows}', file=sys.stdout, flush=True)
     if rows[0][3] == 0:
         rows = rows[1:]
-
-    print(f'run {requestCounter}', file=sys.stdout, flush=True)
 
     population = rowsA[0][1]
     cityName = rowsA[0][9]
@@ -119,12 +113,16 @@ def query(name):
     negRel = pessimistic_prediction(relCurentLastSeven, r_pred)
     negAbs = pessimistic_prediction(absCurentLastSeven, r_pred)
 
-    today = datetime.datetime.now()
+
+
+    # today = datetime.datetime.now()
+    # today = datetime.datetime.strptime(caseCurent[0]['date'], '%Y-%m-%d')
+    today = caseCurent[0]['date']
 
     predNeg = []
     for valu in zip(optRel, optAbs):
         predNeg.append({
-            "date": str((today + datetime.timedelta(days=i)).date().isoformat()),
+            # "date": str((today + datetime.timedelta(days=i)).isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -132,17 +130,18 @@ def query(name):
     predOpt = []
     for valu in zip(negRel, negAbs):
         predOpt.append({
-            "date": str((today + datetime.timedelta(days=i)).date().isoformat()),
+            # "date": str((today + datetime.timedelta(days=i)).isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
 
+    # print(f'XXX {list(predOpt)} {list(predNeg)} {list(predNeg)}')
     caseFuture = []
     i = 0
     for valu in zip(predNeg, predOpt):
-        i += i
+        i += 1
         caseFuture.append({
-            "date": (today + datetime.timedelta(days=i+1)).isoformat(),
+            "date": str((today + datetime.timedelta(days=i)).isoformat()),
             "neg": valu[0],
             "opt": valu[1]
         })
@@ -175,12 +174,10 @@ def query_by_name():
 @app.route('/api/by-location', methods=["POST"])
 def query_by_location():
     global requestCounter
-    print(f'accepted {requestCounter}')
     json_data = request.json
     lat = json_data["lat"]
     lng = json_data["lng"]
     city = pos_to_city(lat, lng)
-    print(f'translated {requestCounter}')
     ret = query(city)
     requestCounter = requestCounter + 1
     return ret
