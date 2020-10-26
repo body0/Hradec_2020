@@ -137,5 +137,8 @@
       }
     }
   },
-  "defaultProject": "HR"
+  "defaultProject": "HR",
+  "cli": {
+    "analytics": false
+  }
 }
