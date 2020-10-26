@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['../globalStyle/floating.css', '../globalStyle/bottomButton.css', './landing-page.component.css']
+  styleUrls: ['../globalStyle/info.css', '../globalStyle/floating.css', '../globalStyle/bottomButton.css', './landing-page.component.css']
 })
 export class LandingPageComponent implements AfterViewInit {
 

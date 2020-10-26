@@ -3,7 +3,39 @@
     
   </div>
 </div> -->
-<div class="map" #map></div>
+<div class="mapSideContaier">
+ <!--  <div class="siderRoot">
+    <div class="sideTitle">
+      <h2>Cestovatelův průvodce karanténou</h2>
+    </div>
+    <div class="cityList">
+      <div class="city">
+        <h2>Praha</h2>
+        <div class="info">
+          <p>
+            <span class="description">Nakžení celkem:</span>
+            <span>
+              <span class="material-icons">coronavirus</span>
+              <span>5000</span>
+            </span>
+          </p>
+          <mat-divider></mat-divider>
+          <p>
+            <span class="description">Nově nakažení:</span>
+            <span>
+              <span class="material-icons">addchart</span>
+              <span>50</span>
+            </span>
+          </p>
+        </div>
+        <button mat-raised-button class="forwardButton" (click)="redirectFront()">
+          <span>Více informací</span>
+        </button>
+      </div>
+    </div>
+  </div> -->
+  <div class="map" #map></div>
+</div>
 <!-- <div class="absoluteHeader" (click)="search.focus()" >
   <span class="material-icons"> 
     search
@@ -36,7 +68,7 @@
   </div>
 </div>
 <div class="container">
-  <input type="text" placeholder="Search...">
+  <input #search type="text" placeholder="Search..."  (keyup.enter)="onEnter(search.value)">
   <div class="search">
     <span class="material-icons">
       search

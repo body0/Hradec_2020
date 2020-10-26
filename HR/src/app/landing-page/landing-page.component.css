@@ -1,4 +1,39 @@
+.mapSideContaier {
+    display: flex;
+}
+.siderRoot {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 1.5rem 2rem;
+}
+.sideTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sideTitle > h2{
+    font-size: 1.2rem;
+    text-align: center;
+}
+.cityList {
+    margin-top: 1.5rem;
+}
+.city {
+    padding: 1rem;
+    background: white;
+    color: black;
+    border-radius: .3rem;
+}
+.city > h2 {
+    margin: .5rem 0;
+    border-bottom: solid 2px var(--yLight);
+    width: fit-content;
+    padding: 0 .2rem;
+}
+
 .map {
+    flex-grow: 10;
     height: 100vh;
     width: 100%;
     margin: auto;
@@ -48,6 +83,7 @@
     justify-content: center;
     width: 100%;
     background: var(--yLight);
+    margin-top: .5rem;
 }
 .covidInfo {
     display: flex;
@@ -210,6 +246,7 @@
     right: -250px;
     background: var(--backgroudBottom);
     z-index: 6;
+    box-shadow: 3px 3px 2px 0px var(--yLight);
 }
 .container input:focus ~ .search > .material-icons {
     color: var(--yLight);

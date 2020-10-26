@@ -124,7 +124,7 @@ def query(name):
     predNeg = []
     for valu in zip(optRel, optAbs):
         predNeg.append({
-            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
+            "date": str((today + datetime.timedelta(days=i)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -132,7 +132,7 @@ def query(name):
     predOpt = []
     for valu in zip(negRel, negAbs):
         predOpt.append({
-            "date": str((today + datetime.timedelta(days=i+1)).date().isoformat()),
+            "date": str((today + datetime.timedelta(days=i)).date().isoformat()),
             "rel": valu[0],
             "abs": valu[1]
         })
@@ -155,8 +155,8 @@ def query(name):
     return jsonify({
         "name": cityName,
         "population": population,
-        "abs": caseCurent[0]['abs'],
-        "rel": caseCurent[0]['rel'],
+        "abs": caseCurent[len(caseCurent) -1]['abs'],
+        "rel": caseCurent[len(caseCurent) -1]['rel'],
         "caseCurrent": caseCurent,
         "caseFuture": caseFuture,
         "r": r_pred,
@@ -191,7 +191,8 @@ def init():
 
     try:
         # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-        con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
+        con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
+        # con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
         print("Database opened successfully!!!")
     except Exception as e:
         raise Exception(f'Cannot connect to db: {e}')
@@ -199,4 +200,4 @@ def init():
 
 if __name__ == '__main__':
     init()
-    app.run(debug=True, use_debugger=False, use_reloader=False, host='0.0.0.0', port=PORT)
+    app.run(host='0.0.0.0', port=PORT)

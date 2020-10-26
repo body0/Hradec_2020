@@ -105,7 +105,7 @@
   </div>
   <div>
     <img src="assets/logo1.svg" alt="">
-    <span>Cestovateluv pruvodce karantenou</span>
+    <span>Cestovatelův průvodce karanténou</span>
   </div>
   <!-- <div>
     <span (click)="search.focus()" class="material-icons" style="font-size: 2rem;">
@@ -145,7 +145,7 @@
   </div>
   <div class="floating">
     <div style="margin: 0">
-      <div style="height: 100%; width: 100%;" #map></div>
+      <div style="height: 100%; width: 100%; min-height: 200px;" #map></div>
     </div>
   </div>
 </div>
@@ -162,18 +162,51 @@
           error_outline
         </span> -->
       <span class="infoBigTitle">
-        R faktor
+        Reprodukční číslo
+      </span>
+      <span class="moreInfo" (click)="ShowMoreInfoA = !ShowMoreInfoA; ShowMoreInfoB = false;">
+        <span class="moreInfoText">Více informací</span>
+        <span class="material-icons">
+          info
+        </span>
+        <div class="moreInfoContent" *ngIf="ShowMoreInfoA">
+          <h2>
+            <span>Reprodukční číslo</span>
+          </h2>
+          <p>
+            Číslo R - Reprodukční číslo u epidemií pomáhá odhadnout, jak se bude epidemie šířit. Čím vyšší je číslo R,
+            tím se nemoc rychleji šíří. Pokud je R menší než jedna, počet nakažených v populaci klesá. <strong>Hodnota
+              čísla R udává kolik lidí je nakažený schopný nakazit.</strong> Příklad první den máme 1 nakaženého a
+            reprodukční číslo je 1. Jak se tedy bude epidemie vyvijet: 1 2 4 8 16 32 64 ....
+          </p>
+        </div>
       </span>
     </div>
+    <div class="infoLine"></div>
     <div>
       <div>
-        <span class="material-icons" style="font-weight: bold; margin-left: 1rem;" [ngStyle]="{color: WarningColor}">
-          error_outline
+        <span class="material-icons" [ngStyle]="{color: WarningColor}">
+          warning
         </span>
         <span>{{Confinig?.cach | number:'1.2-3'}}%</span>
       </div>
       <span class="infoBigTitle">
         Šance nakažení
+      </span>
+      <span class="moreInfo" (click)="ShowMoreInfoB = !ShowMoreInfoB; ShowMoreInfoA = false;">
+        <span class="moreInfoText">Více informací</span>
+        <span class="material-icons">
+          info
+        </span>
+        <div class="moreInfoContent" *ngIf="ShowMoreInfoB">
+          <h2>
+            <span>Reprodukční číslo</span>
+          </h2>
+          <p>
+            Šance nakažení - Touto hodnotou je myšlen procentuální odhad rizika nakažení v této oblasti.
+            <strong>To znamená jaké je riziko, že se zde nakazíte pokud sem budete cestovat.</strong>
+          </p>
+        </div>
       </span>
     </div>
   </div>
@@ -194,7 +227,7 @@
   </div>
   <div class="floating">
     <div>
-      <span class="gragName">Nakažení</span>
+      <p class="gragName">Nakažení</p>
       <div class="mainGraf" #grafAbs></div>
       <div class="legend">
         <div>
@@ -216,7 +249,7 @@
 <div class="floatingSlpitNoSpace floatingSlpitThirdA">
   <div class="floating">
     <div>
-      <span class="gragName">Přírůstky</span>
+      <p class="gragName">Přírůstky</p>
       <div class="mainGraf" #grafRel></div>
       <div class="legend">
         <div>
@@ -243,6 +276,33 @@
         </span>
         <span class="smallPart">Přírůstky</span>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footerContent">
+    <h2>Cestovatelův průvodce karanténou</h2>
+    <div>
+      <p>Verze: 0.0.0</p>
+      <p>Kontaktní emal: nykl.jan.3693@gmail.com; vojta.kuchar.sps@gmail.com</p>
+    </div>
+  </div>
+  <div class="footerSpaces"></div>
+  <div class="footerContent">
+    <h2>Vytvořeno</h2>
+    <div>
+      <p>Autori: Kristýna Petrlíková, Adam Pudil, Jan Nykl, Vojtěch Kuchař</p>
+      <p>Za podpory: VOŠ a SPŠ Jičín</p>
+      <p>V rámci: Hackathon open-data Královéhradeckého kraje 2020</p>
+    </div>
+  </div>
+  <div class="footerSpaces"></div>
+  <div class="footerContent">
+    <h2>Datove sady</h2>
+    <div>
+      <p>Zdroj nakaženýc: Ministerstvo zdravotnictví České republiky</p>
+      <p>Zdroj populace: Český statistický úřad</p>
     </div>
   </div>
 </div>

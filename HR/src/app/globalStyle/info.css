@@ -1,0 +1,27 @@
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.info > p {
+    font-size: 1.3rem;
+    color: #444;
+    margin: .5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.info > p > span:not(.description) {
+    margin-left: 1rem;
+    margin-top: .2rem;
+    display: flex;
+}
+.info > p > span:not(.description) >  .material-icons {
+    margin-right: .5rem;
+}
+.info > p > .description {
+    font-size: .9rem;
+}
+
+.info > mat-divider {
+    width: 100%;
+}

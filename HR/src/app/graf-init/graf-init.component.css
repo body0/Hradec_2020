@@ -1,32 +1,7 @@
-.info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.info > p {
-    font-size: 1.3rem;
-    color: #444;
-    margin: .5rem 0;
-    display: flex;
-    flex-direction: column;
-}
-.info > p > span:not(.description) {
-    margin-left: 1rem;
-    margin-top: .2rem;
-    display: flex;
-}
-.info > p > span:not(.description) >  .material-icons {
-    margin-right: .5rem;
-}
-.info > p > .description {
-    font-size: .9rem;
-}
-
-.info > mat-divider {
-    width: 100%;
-}
 .mainGraf {
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    min-height: 150px;
 }
 
 .legend {
@@ -54,6 +29,9 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    color: #022231;
 }
 .bigNumber > .bigPart {
     font-size: 3rem;
@@ -71,44 +49,103 @@
     font-weight: 100;
 }
 .gragName {
-    font-size: .9rem;
+    font-size: .95rem;
     color: #555;
+    margin-top: .5rem;
 }
 .infoBig {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    font-size: 1.7rem;
+    font-weight: 100;
 }
+.infoBig > .infoLine {
+    height: calc(100% - 2rem);
+    margin: 1rem .5rem;
+    padding: 0;
+    width: 2px;
+    background: #ddd;
+}  
 .infoBig > div {
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
+    align-items: center;
+    padding: 2rem 1rem; 
 }
 .infoBig > div > div {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding-bottom: .7rem;
 }
 .infoBig > div > div > .material-icons {
     margin-right: .5rem;
+    font-size: 2.9rem;
+    /* font-weight: bold; */
 }
 .infoBig > .infoBigTitle {
     font-size: 2rem;
-    
 }
+.moreInfo {
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+    margin-top: .7rem;
+    color: #777;
+}
+.moreInfo > .moreInfoText {
+    font-size: .9rem;
+    text-decoration: underline;
+    margin-right: .3rem;
+}
+.moreInfo > .material-icons {
+    font-size: 1.3rem;
+}
+.moreInfoContent {
+    position: absolute;
+    padding: 1rem;
+    box-shadow: 1px 1px 0px 2px #555, 2px 2px 5px #333;
+    top: calc(100% - 2rem);
+    background: white;
+    z-index: 100;
+    color: var(--header);
+    left: 3rem;
+    right: 3rem;
+    box-sizing: border-box;
+}
+.moreInfoContent > h2 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    margin: .3rem 0 1.5rem 0;
+}
+.moreInfoContent > p {
+    font-size: 1.35rem;
+    font-weight: 100;
+    margin-left: .8rem;
+    padding-left: 1rem;
+    border-left: solid 5px var(--yLight);
+    margin-bottom: .8rem;
+}
+.moreInfoContent > p strong {
+    font-weight: 500;
+    color: var(--header);
+}
+/* .moreInfoText:hover::after {
+    position: absolute;
+    content: 'hallo';
+} */
 
 mat-toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #F4B400;
+    background: var(--yLight);
     color: #012B3F;
 }
 mat-toolbar > div {
     display: flex;
     align-items: center; 
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     font-weight: 100;   
 }
 mat-toolbar > .back {
@@ -117,9 +154,66 @@ mat-toolbar > .back {
     padding: .2rem;   
 }
 mat-toolbar img {
-    height: 3.7rem;
+    height: 3.5rem;
     margin-right: .5rem;    
 }
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    margin: 5rem auto 2.5rem auto;
+    width: 80%;
+    max-width: 60rem;
+    color: white;
+}
+.footerSpaces {
+    margin: 1rem 2rem;
+    background: var(--yLight);
+    width: 2px;
+}
+.footerContent{
+    display: flex;
+    flex-direction: column;
+}
+.footerContent > h2 {
+    font-size: 1.5rem;
+}
+.footerContent > div {
+    display: flex;
+    flex-direction: column;
+}
+.footerContent > div > p {
+    font-size: 1.2rem;
+    margin: 0 .3rem;
+}
+.footerContent > div > p::before {
+    content: '>';
+    margin-right: .5rem;
+    color: var(--yLight);
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 700px) {
+    .infoBig {
+        display: flex;
+        flex-direction: column;
+    }
+    .infoBig > .infoLine {
+        height: 2px;
+        margin: 2rem 1rem;
+        width: 100%;
+    }
+    .footer {
+        display: flex;
+        flex-direction: column;
+    }
+    .footerSpaces {
+        height: 2px;
+        margin: 2rem 1rem;
+        width: 100%;
+    }
+}
+
 
 /* mat-toolbar > div > * {
     margin: 0 .3rem; 

@@ -5,7 +5,7 @@ import { DataLoaderService } from '../data-loader.service';
 @Component({
   selector: 'app-graf-init',
   templateUrl: './graf-init.component.html',
-  styleUrls: ['../globalStyle/floating.css', '../globalStyle/bottomButton.css', './graf-init.component.css']
+  styleUrls: ['../globalStyle/info.css', '../globalStyle/floating.css', '../globalStyle/bottomButton.css', './graf-init.component.css']
 })
 export class GrafInitComponent implements AfterViewInit {
 
@@ -16,16 +16,18 @@ export class GrafInitComponent implements AfterViewInit {
   Error = '';
   WarningColor = '';
 
+  ShowMoreInfoA = false;
+  ShowMoreInfoB = false;
+
   constructor(
     private dataLoaderService: DataLoaderService,
     public router: Router) {
     this.loadData();
-    dataLoaderService.getDataFromLocation('Brno');
   }
 
   async loadData() {
-    const data = this.dataLoaderService.getLastLoadedInfo();
-    // const data = await this.dataLoaderService.getDataFromLocation('Brno');
+    // const data = this.dataLoaderService.getLastLoadedInfo();
+    const data = await this.dataLoaderService.getDataFromLocation('Brno');
     if (!data) {
       this.Error = 'No data To Load';
       return;
@@ -50,16 +52,18 @@ export class GrafInitComponent implements AfterViewInit {
     const grafData = [
       ['', '', '', '']
     ];
-    this.Confinig.caseCurrent.forEach(elm => {
-      const subArr = [elm.date, null, null, elm.abs];
+
+    for (let i = 0; i < this.Confinig.caseCurrent.length - 1; i++) {
+      const elm = this.Confinig.caseCurrent[i];
+      const subArr = [this.formatDate(elm.date), null, null, elm.abs];
       grafData.push(subArr);
-    });
-    const firstFuture = this.Confinig.caseFuture[0];
-    // const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
-    grafData.push([firstFuture.date, firstFuture.neg.abs, firstFuture.opt.abs, firstFuture.opt.abs]);
-    for (let i = 1; i < this.Confinig.caseFuture.length; i++) {
+    }
+    // const firstFuture = this.Confinig.caseFuture[0];
+    const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
+    grafData.push([this.formatDate(lastCurent.date), lastCurent.abs, lastCurent.abs, lastCurent.abs]);
+    for (let i = 0; i < this.Confinig.caseFuture.length; i++) {
       const elm = this.Confinig.caseFuture[i];
-      const subArr = [elm.date, elm.neg.abs, elm.opt.abs, null];
+      const subArr = [this.formatDate(elm.date), elm.neg.abs, elm.opt.abs, null];
       grafData.push(subArr);
     }
 
@@ -72,7 +76,21 @@ export class GrafInitComponent implements AfterViewInit {
         var options = {
           // title: 'Company Performance',
           curveType: 'function',
-          legend: { position: 'none' }
+          legend: { position: 'none' },
+          backgroundColor: {
+            fill: '#eee',
+            fillOpacity: 1
+          },
+          chartArea: {
+            backgroundColor: {
+              fill: '#eee',
+              fillOpacity: 1
+            },
+          },
+          /* titleTextStyle: { color: '#F4B400' },
+          hAxis: {
+            color: '#F4B400',
+          } */
         };
 
         var chart = new google.charts.Line(this.grafAbs.nativeElement);
@@ -108,7 +126,17 @@ export class GrafInitComponent implements AfterViewInit {
         let options = {
           // title: 'Company Performance',
           curveType: 'function',
-          legend: { position: 'none' }
+          legend: { position: 'none' },
+          backgroundColor: {
+            fill: '#eee',
+            fillOpacity: 1
+          },
+          chartArea: {
+            backgroundColor: {
+              fill: '#eee',
+              fillOpacity: 1
+            },
+          },
         };
 
         let chart = new google.charts.Line(this.grafRel.nativeElement);
@@ -117,7 +145,8 @@ export class GrafInitComponent implements AfterViewInit {
       });
     }, 100); // TO DO
   }
-  formatDate(date: Date): string {
+  formatDate(dateStr: string): string {
+    const date = new Date(dateStr);
     return date.getMonth() + '. ' + date.getDate() + '.';
   }
 

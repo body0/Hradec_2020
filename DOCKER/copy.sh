@@ -33,7 +33,7 @@ if [[ -d "$PojectRoot/DOCKER/apiService/app" ]]; then
 fi
 cp -r "$PojectRoot/FLUSK/app" "$PojectRoot/DOCKER/apiService/app"
 
-exit 0
+# exit 0
 
 # html
 echo 'build angualr'
