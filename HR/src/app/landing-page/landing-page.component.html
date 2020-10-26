@@ -43,7 +43,7 @@
   <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter(search.value)">
 </div> -->
 <div class="absoluteFooter" *ngIf="Error">
-  <h2>Chyba</h2>
+  <h2></h2>
   <pre style="margin: .5rem; font-size: 1.5rem;">Nemohu najít požadované místo</pre>
 </div>
 <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
