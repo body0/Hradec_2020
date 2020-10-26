@@ -9,9 +9,12 @@ COPY requirements.txt .
 
 # install dependencies
 RUN pip install -r requirements.txt
+RUN pip install gunicorn
 
 # copy the content of the local src directory to the working directory
-COPY src/ .
+COPY app/ app/
 
 # command to run on container start
-CMD [ "python", "./main.py" ]
+# CMD [ "python", "app/__init__.py" ]
+WORKDIR /var/app/app
+CMD [ "gunicorn", "wsgi:appGenerator()", "--log-level DEBUG" ]

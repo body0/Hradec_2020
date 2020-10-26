@@ -1,4 +1,39 @@
+.mapSideContaier {
+    display: flex;
+}
+.siderRoot {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 1.5rem 2rem;
+}
+.sideTitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sideTitle > h2{
+    font-size: 1.2rem;
+    text-align: center;
+}
+.cityList {
+    margin-top: 1.5rem;
+}
+.city {
+    padding: 1rem;
+    background: white;
+    color: black;
+    border-radius: .3rem;
+}
+.city > h2 {
+    margin: .5rem 0;
+    border-bottom: solid 2px var(--yLight);
+    width: fit-content;
+    padding: 0 .2rem;
+}
+
 .map {
+    flex-grow: 10;
     height: 100vh;
     width: 100%;
     margin: auto;
@@ -48,6 +83,7 @@
     justify-content: center;
     width: 100%;
     background: var(--yLight);
+    margin-top: .5rem;
 }
 .covidInfo {
     display: flex;
@@ -129,90 +165,109 @@
     width: 100%;
 }
 
-.bigButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    font-size: 1.2rem;
-    fill: #333;
-    /* max-height: 6rem; */
-}
-.bigButton > .material-icons {
-    font-size: 5rem;
-}
-.bigButton > img {
-    width: 5rem;
-}
-.bigButton > svg {
-    width: 8rem;
-}
-.bigButtonHowerable:hover:enabled {
-    /* color: #e0e0e0; */
-    background-color: #0B99D8;
-}
-.bigButtonHowerable:hover:enabled .material-icons, .bigButtonHowerable:hover:enabled span{
-    color: #eee;
-}
-.bigButtonHowerable:hover:enabled svg{
-    fill: #eee;
-}
 
-.bigButtonWraper {
+
+
+
+
+.container {
+    box-sizing: border-box;
+    position: absolute;
+    margin: auto;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 300px;
+    height: 100px;
+}
+.container * {
+    box-sizing: border-box;
+}
+.container .search {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background: var(--yLight);
+    border-radius: 50%;
+    transition: all 1s;
+    z-index: 4;
+    /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4); */
     display: flex;
     justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 2px 0px var(--backgroudBottom);
 }
-.bigButtonWraper > button {
-    margin: 1rem;
+.container .search:hover {
+    cursor: pointer;
 }
-
-.bigButtonSmall {
-    flex-direction: row;
-    padding: .5rem 0;
-}
-.bigButtonSmall > span {
-    font-size: 1em;
-}
-.bigButtonSmall > .material-icons {
-    margin-right: .3rem;
-    font-size: 1.5em;
-}
-.bigButtonSmall > img {
-    margin-right: .5rem;
-    width: 1.5em;
+.search > .material-icons {
+    font-size: 50px;
+    color: var(--backgroudBottom);
 }
 
-.activeButton {
-    /* color: #e0e0e0; */
-    background-color: #0B99D8;
+.container input {
+    font-family: 'Inconsolata', monospace;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background: var(--yLight);;
+    color: white;
+    text-shadow: 0 0 10px var(--yLight);;
+    padding: 0 80px 0 20px;
+    border-radius: 30px;
+    /* box-shadow: 0 0 25px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.2); */
+    transition: all 1s;
+    opacity: 0;
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
 }
-.activeButton .material-icons, .activeButton span{
-    color: #eee;
+.container input:hover {
+    cursor: pointer;
 }
-.activeButton svg{
-    fill: #eee;
+.container input:focus {
+    width: 300px;
+    opacity: 1;
+    cursor: text;
 }
-
-@media only screen and (max-width: 700px) {
-    .bigButtonWraper {
-        flex-direction: column;
-    }
-    .bigButtonWraper > button {
-        margin: .8rem 0;
-    }
-    .bigButton {
-        flex-direction: row;
-        padding: .5rem 0;
-    }
-    .bigButton > span {
-        font-size: 1em;
-    }
-    .bigButton > .material-icons {
-        margin-right: .3rem;
-        font-size: 1.5em;
-    }
-    .bigButton > img {
-        margin-right: .5rem;
-        width: 1.5em;
-    }
+.container input:focus ~ .search {
+    right: -250px;
+    background: var(--backgroudBottom);
+    z-index: 6;
+    box-shadow: 3px 3px 2px 0px var(--yLight);
+}
+.container input:focus ~ .search > .material-icons {
+    color: var(--yLight);
+}
+.container input:focus ~ .search::before {
+    top: 0;
+    left: 0;
+    width: 25px;
+}
+.container input:focus ~ .search::after {
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    border: none;
+    background: white;
+    border-radius: 0%;
+    transform: rotate(-45deg);
+}
+.container input::placeholder {
+    color: white;
+    opacity: 0.5;
+    font-weight: bolder;
 }

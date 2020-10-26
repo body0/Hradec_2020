@@ -3,42 +3,81 @@
     
   </div>
 </div> -->
-<div class="map" #map></div>
-<div class="absoluteHeader" (click)="search.focus()" >
+<div class="mapSideContaier">
+ <!--  <div class="siderRoot">
+    <div class="sideTitle">
+      <h2>Cestovatelův průvodce karanténou</h2>
+    </div>
+    <div class="cityList">
+      <div class="city">
+        <h2>Praha</h2>
+        <div class="info">
+          <p>
+            <span class="description">Nakžení celkem:</span>
+            <span>
+              <span class="material-icons">coronavirus</span>
+              <span>5000</span>
+            </span>
+          </p>
+          <mat-divider></mat-divider>
+          <p>
+            <span class="description">Nově nakažení:</span>
+            <span>
+              <span class="material-icons">addchart</span>
+              <span>50</span>
+            </span>
+          </p>
+        </div>
+        <button mat-raised-button class="forwardButton" (click)="redirectFront()">
+          <span>Více informací</span>
+        </button>
+      </div>
+    </div>
+  </div> -->
+  <div class="map" #map></div>
+</div>
+<!-- <div class="absoluteHeader" (click)="search.focus()" >
   <span class="material-icons"> 
     search
   </span>
-  <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter()">
-</div>
+  <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter(search.value)">
+</div> -->
 <div class="absoluteFooter" *ngIf="Error">
-  <h2>Error</h2>
-  <pre>{{Error}}</pre>
+  <h2>Chyba</h2>
+  <pre style="margin: .5rem; font-size: 1.5rem;">Nemohu najít požadované místo</pre>
 </div>
 <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
   <h2>{{SelectedPosition.name}}</h2>
   <div class="covidInfo">
     <p>
       <span class="material-icons">coronavirus</span>
-      <span>500</span>
+      <span>{{SelectedPosition.abs}}</span>
     </p>
     <p>
       <span class="material-icons">addchart</span>
-      <span>+5</span>
+      <span>+{{SelectedPosition.rel}}</span>
     </p>
   </div>
   <div class="forwardButtonWraper">
-    <button mat-raised-button class="forwardButton">
-      <span>More Info</span>
+    <button mat-raised-button class="forwardButton" (click)="redirectFront()">
+      <span>Více informací</span>
       <!-- <span class="material-icons">
         forward
       </span> -->
     </button>
   </div>
 </div>
-<div class="absoluteFooter" *ngIf="!Error && !SelectedPosition">
+<div class="container">
+  <input #search type="text" placeholder="Search..."  (keyup.enter)="onEnter(search.value)">
+  <div class="search">
+    <span class="material-icons">
+      search
+    </span>
+  </div>
+</div>
+<!-- <div class="absoluteFooter" *ngIf="!Error && !SelectedPosition">
   <h2>Corona search</h2>
   <div class="covidInfo">
     <img src="assets/logo.svg">
-    <!-- <p>text</p> -->
   </div>
-</div>
+</div> -->

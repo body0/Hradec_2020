@@ -7,6 +7,7 @@ export const environment = {
   contactEmail: 'jan.nykl.333@gmail.com',
   appVersion: 'hot dev',
   ApiRoot: 'http://localhost:5000/api/'
+  // ApiRoot: 'http://localhost:3102/api/'
   // ApiRoot: 'http://144.91.111.198:5001/api/'
 };
 
