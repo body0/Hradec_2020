@@ -64,10 +64,11 @@ Cílem projektu bylo vytvořit webovou aplikaci pro odhad rizika nakažení koro
 - ## Desktop verze
     ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/1.png?raw=true)
     ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/2.png?raw=true)
+    ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/3.png?raw=true)
    
 - ## Mobilní verze
 
-    ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/3.png?raw=true)
+    
     ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/4.png?raw=true)
     ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/5.png?raw=true)
     ![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/6.png?raw=true)
