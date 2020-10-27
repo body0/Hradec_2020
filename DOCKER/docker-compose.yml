@@ -32,8 +32,8 @@ services:
       - DB_NAME=covid
     expose:
       - '3102'
-    # ports:                       #TEST# 
-    #  - 3102:3102                #TEST# 
+    ports:                       #TEST# 
+      - 3102:3102                #TEST# 
     env_file:
       - ./env/secrets.env
     deploy:
