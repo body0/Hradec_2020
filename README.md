@@ -12,13 +12,13 @@
 - aktuálně na adrese: https://covidtour.ml/
 - automatické načtení nových data každých 12h
 
-## Popis weové aplikace
+## Popis webové aplikace
 Cílem projektu bylo vytvořit webovou aplikaci pro odhad rizika nakažení koronavirem v uživateli zvolené lokalitě.
 
--Uživatel zvolí lokalitu kam chce cestovat
--Aplikace spočítá jaká je pravděpodobnost nákazy v dané oblasti.
--Zobrazí týdenní predikci v dané oblasti.
--Procentuální šance nákazy, vývoj nákazy.
+- Uživatel zvolí lokalitu kam chce cestovat
+- Aplikace spočítá jaká je pravděpodobnost nákazy v dané oblasti.
+- Zobrazí týdenní predikci v dané oblasti.
+- Procentuální šance nákazy, vývoj nákazy.
 ## Včem je naše aplikace unikátní?
   - Nabýzí unikátní pohled na situaci
         - Zobrazuje reprodukční číslo pro danou lokalitu
