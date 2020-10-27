@@ -12,13 +12,13 @@
     <div class="cityList">
       <div class="city"  *ngIf="Error">
         <h2>Ouha</h2>
-        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit.</p>
+        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit. "Mistr Voda"</p>
       </div>
       <div class="city" *ngIf="!Error && SelectedPosition">
         <h2>{{SelectedPosition.name}}</h2>
         <div class="info">
           <p>
-            <span class="description">Nakžených celkem:</span>
+            <span class="description">Nakažených celkem:</span>
             <span>
               <span class="material-icons">coronavirus</span>
               <span>{{SelectedPosition.abs}}</span>
@@ -62,7 +62,7 @@
 <div class="absoluteFooter" *ngIf="Error">
   <div class="city">
     <h2>Ouha</h2>
-        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit.</p>
+        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit. "Mistr Voda"</p>
   </div>
 </div>
 <!-- <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
@@ -88,7 +88,7 @@
     <h2>{{SelectedPosition.name}}</h2>
     <div class="info">
       <p>
-        <span class="description">Nakžených celkem:</span>
+        <span class="description">Nakažených celkem:</span>
         <span>
           <span class="material-icons">coronavirus</span>
           <span>{{SelectedPosition.abs}}</span>
