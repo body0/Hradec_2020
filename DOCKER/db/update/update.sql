@@ -2,7 +2,11 @@
 
 DELETE FROM pripady WHERE datum >= now() - INTERVAL '3 DAYS';
 
-BULK INSERT pripady
+
+copy pripady(datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/update/casesNew.csv' DELIMITER ',' CSV HEADER;
+
+
+/* BULK INSERT pripady
   FROM '/update/casesNew.csv'
   WITH
   (
@@ -10,4 +14,4 @@ BULK INSERT pripady
     FIELDTERMINATOR= ',',
     ROWTERMINATOR = '\n',
     TABLOCK
-  );
+  ); */

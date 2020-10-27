@@ -8,7 +8,7 @@ FROM postgres:latest
 #RUN (crontab -l 2>/dev/null; echo "0 23 * * * /var/db/backup.sh") | crontab -
  
 RUN apt-get update -y
-RUN apt-get install -y python3-pip python3-dev wget unzip
+RUN apt-get install -y python3-pip python3-dev wget unzip cron
 # RUN apt-get update \
 #   && apt-get install -y python3-pip python3-dev \
 #   && cd /usr/local/bin \

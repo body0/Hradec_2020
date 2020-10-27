@@ -188,8 +188,8 @@ def init():
 
     try:
         # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-        con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-        # con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
+        # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
+        con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
         print("Database opened successfully!!!")
     except Exception as e:
         raise Exception(f'Cannot connect to db: {e}')
