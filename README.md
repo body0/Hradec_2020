@@ -10,7 +10,7 @@
 ## Aktuální provoz aplikace
 
 - aktuálně na adrese: https://covidtour.ml/
-- automatické načtení nových data
+- automatické načtení nových data každých 12h
 
 ## Popis weové aplikace
 Cílem projektu bylo vytvořit webovou aplikaci pro odhad rizika nakažení koronavirem v uživateli zvolené lokalitě.
@@ -42,10 +42,20 @@ Cílem projektu bylo vytvořit webovou aplikaci pro odhad rizika nakažení koro
 - python (flusk; psycopg2)
 - postgres
 
+### servers/proxy
+
+- nginx
+- gunicorn
+
+### deploy
+
+- docker (docker-compose)
+
 ## Spuštění aplikace
 
 - celá aplikace je připravena pro docker
 - docker otevírá na hostujícím serveru port 5432 pro veřejný přístup k databázi a 3101 pro samotnou vebovou aplikaci
+- pro nakorování změn do dockeru použijte copy.sh skript v /DOCKER
 
 ```
     git clone https://github.com/body0/Hradec_2020
