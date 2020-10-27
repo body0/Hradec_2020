@@ -12,13 +12,13 @@
     align-items: center;
 }
 .sideTitle > h2{
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 100;
     text-align: center;
 }
 .sideTitle > img {
     height: 2rem;
-    margin-right: .3rem;
+    margin-right: .7rem;
 }
 .cityList {
     margin-top: 1.5rem;
@@ -75,6 +75,7 @@
 .sideSearchInput:focus ~ label, .sideSearchInput:valid ~ label {
     color: var(--yLight);
     top: -1rem;
+    left: -5px;
     font-size: 14px;
 }
 

@@ -6,7 +6,7 @@ html, body {
 }
 body { 
     background-color: #022231; 
-    font-family: Dosis, Roboto, "Helvetica Neue", sans-serif;
+    font-family: sans-serif;
     overscroll-behavior: contain;
     --header: #022231;
     --backgroundTop: #044360;
