@@ -17,10 +17,10 @@ CREATE TABLE pripady (
 );
 
 
-copy pripady(id, datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/init/cases.csv' DELIMITER ',' CSV HEADER;
+copy pripady(datum, obec_kod, nove_pripady, aktualne_nemocnych) FROM '/init/cases.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE populace (
-  id Integer PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   obyv_celkem Integer,
   obyv_muzi Integer,
   obyv_zeny Integer,
@@ -33,4 +33,4 @@ CREATE TABLE populace (
 );
 
 
-copy populace(id, LAU_1, LAU_2, nazev_obce, obyv_celkem, obyv_muzi, obyv_zeny, vek_celkem, vek_muzi, vek_zeny) FROM '/init/population.csv' DELIMITER ',' CSV HEADER;
+copy populace(LAU_1, LAU_2, nazev_obce, obyv_celkem, obyv_muzi, obyv_zeny, vek_celkem, vek_muzi, vek_zeny) FROM '/init/population.csv' DELIMITER ',' CSV HEADER;
