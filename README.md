@@ -1,5 +1,5 @@
 # Cestovatelův průvodce karanténou
-
+![Sec](https://github.com/body0/Hradec_2020/blob/master/prezentace/apple-touch-icon.png?raw=true)
 - Autoři: Kristýna Petrlíková, Adam Pudil, Jan Nykl, Vojtěch Kuchař
 - Za podpory: VOŠ a SPŠ Jičín
 - V rámci: Hackathon open-data Královéhradeckého kraje 2020
@@ -13,16 +13,19 @@
 - automatické načtení nových data
 
 ## Popis weové aplikace
+Cílem projektu bylo vytvořit webovou aplikaci pro odhad rizika nakažení koronavirem v uživateli zvolené lokalitě.
 
-## Prvotní návrh
+-Uživatel zvolí lokalitu kam chce cestovat
+-Aplikace spočítá jaká je pravděpodobnost nákazy v dané oblasti.
+-Zobrazí týdenní predikci v dané oblasti.
+-Procentuální šance nákazy, vývoj nákazy.
+## Včem je naše aplikace unikátní?
+  - Nabýzí unikátní pohled na situaci
+        - Zobrazuje reprodukční číslo pro danou lokalitu
+        - Odhaduje možná rizika nakažení v oblasti
+  - Čerpá oficiální open data MZČR
+  - Řeší lokální problematiku pandemie
 
-- Cílem projektu je vytvořit webovou aplikaci pro odhad rizika nakažení koronavirem v uživateli zvolené lokalitě.
-- Uživatel zvolí lokalitu a další pram. (velikost města, cíl návštěvy, počet potkaných lidí) kam chce cestovat
-- Aplikace spočítá jaká je pravděpodobnost nákazy v dané oblasti.
-- Dodá základní informace o otevřenosti míst(restaurace, bary, atd.) -Google data
-- Zobrazí týdenní predikci v dané oblasti.
-- Parametry(délka pobytu, účel pobytu, jdu na akci s počtem x)
-- Procentuální šance nákazy, vývoj nákazy, predikce. semafor
 
 ## Použité technologie
 
