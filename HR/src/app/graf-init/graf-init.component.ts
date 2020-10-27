@@ -166,7 +166,7 @@ export class GrafInitComponent implements AfterViewInit {
   }
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
-    return date.getDate() + '.' + date.getMonth() + '. ';
+    return date.getDate() + '.' + date.getMonth() + 1 + '. ';
   }
 
   initMap(position) {
