@@ -29,4 +29,8 @@ COPY ./update/setup.sh setup.sh
 COPY ./update/update.sql update.sql
 RUN chmod +x setup.sh
 
+# RUN echo "*/10 * * * * /update/setup.sh" > cronscript
+RUN echo "0 */12 * * * /update/setup.sh" > cronscript
+RUN crontab -u root cronscript
+
 COPY ./init/init.sql /docker-entrypoint-initdb.d/

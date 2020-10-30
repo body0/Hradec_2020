@@ -9,8 +9,3 @@ wget $ODKAZ_POPULACE -O populace.xlsx -q --show-progress
 
 /usr/bin/python3 parseTables.py
 
-# echo "*/10 * * * * /update/setup.sh" > cronscript
-echo "0 */12 * * * /update/setup.sh" > cronscript
-
-
-crontab -e cronscript
