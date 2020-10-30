@@ -17,4 +17,4 @@ COPY app/ app/
 # command to run on container start
 # CMD [ "python", "app/__init__.py" ]
 WORKDIR /var/app/app
-CMD [ "gunicorn", "wsgi:appGenerator()", "--log-level DEBUG" ]
+CMD [ "gunicorn", "wsgi:appGenerator()"]
