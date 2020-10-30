@@ -96,13 +96,13 @@ def query(name):
         })
 
     absCurentLastSeven = []
-    for i in range(0, min(7, len(rows))):
+    for i in range(max(0, len(rows) -1 -7), len(rows)):
         rowLine = rows[i]
         absCurentLastSeven.append(rowLine[4])
 
 
     relCurentLastSeven = []
-    for i in range(0, min(7, len(rows))):
+    for i in range(max(0, len(rows) -1 -7), len(rows)):
         rowLine = rows[i]   
         relCurentLastSeven.append(rowLine[3])
 
@@ -147,15 +147,18 @@ def query(name):
         })
 
     caseCurent.reverse()
-    percentCovid = caseCurent[0]['abs'] / population * 100
 
-    percentToCatch = caluculate_risk(population, r_pred, caseCurent[0]['abs'])
+    curentAbs = caseCurent[len(caseCurent) -1]['abs']
+    curentRel = caseCurent[len(caseCurent) -1]['rel']
+    percentCovid = curentAbs / population * 100
+
+    percentToCatch = caluculate_risk(population, r_pred, curentAbs)
 
     return jsonify({
         "name": cityName,
         "population": population,
-        "abs": caseCurent[len(caseCurent) -1]['abs'],
-        "rel": caseCurent[len(caseCurent) -1]['rel'],
+        "abs": curentAbs,
+        "rel": curentRel,
         "caseCurrent": caseCurent,
         "caseFuture": caseFuture,
         "r": r_pred,
@@ -187,9 +190,8 @@ def init():
     print(f'ENV: {PORT} {DB_HOST} {DB_PORT} {DB_NAME} {DB_USER} {DB_PASSWORD} {GOOGLE_KEY}' )
 
     try:
-        # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-        # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
-        con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
+        con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
+        # con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
         print("Database opened successfully!!!")
     except Exception as e:
         raise Exception(f'Cannot connect to db: {e}')

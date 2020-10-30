@@ -13,4 +13,4 @@ wget $ODKAZ_POPULACE -O populace.xlsx -q --show-progress
 echo "0 */12 * * * /update/setup.sh" > cronscript
 
 
-crontab cronscript
+crontab -e cronscript
