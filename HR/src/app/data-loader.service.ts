@@ -19,9 +19,9 @@ export class DataLoaderService {
   };
 
   private LastLoadedInfo = null;
-  private LastPosition = {
-    lat: 0,
-    lng: 0
+  private LastPosition = { 
+    lat: 50.036179154236905,
+    lng: 14.452818238135281 
   };
 
   constructor(private http: HttpClient, ) {

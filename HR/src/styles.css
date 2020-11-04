@@ -19,7 +19,9 @@ body {
     --yLight: #F4B400;
  }
 
- .gmnoprint{
-    right: x;
-    left: 0;
- }
+ /* .gmnoprint{
+    right: 0;
+    top: 0;
+    left: initial;
+    bottom: initial;
+ } */

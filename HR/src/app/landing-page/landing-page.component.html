@@ -10,38 +10,43 @@
       <h2>Cestovatelův průvodce karanténou</h2>
     </div>
     <div class="cityList">
-      <div class="city"  *ngIf="Error">
-        <h2>Ouha</h2>
-        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit. "Mistr Voda"</p>
-      </div>
-      <div class="city" *ngIf="!Error && SelectedPosition">
-        <h2>{{SelectedPosition.name}}</h2>
-        <div class="info">
-          <p>
-            <span class="description">Nakažených celkem:</span>
-            <span>
-              <span class="material-icons">coronavirus</span>
-              <span>{{SelectedPosition.abs}}</span>
-            </span>
-          </p>
-          <mat-divider></mat-divider>
-          <p>
-            <span class="description">Nově nakažení:</span>
-            <span>
-              <span class="material-icons">addchart</span>
-              <span>{{SelectedPosition.rel}}</span>
-            </span>
-          </p>
+
+      <div *ngFor="let c of SelectionList">
+        <div class="city" *ngIf="c.err">
+          <h2>Ouha</h2>
+          <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit. "Mistr Voda"</p>
         </div>
-        <button mat-raised-button class="forwardButton" (click)="redirectFront()">
-          <span>Více informací</span>
-        </button>
+        <div class="city" *ngIf="!c.err && c.data">
+          <h2>{{c.data.name}}</h2>
+          <div class="info">
+            <p>
+              <span class="description">Nakažených celkem:</span>
+              <span>
+                <span class="material-icons">coronavirus</span>
+                <span>{{c.data.abs}}</span>
+              </span>
+            </p>
+            <mat-divider></mat-divider>
+            <p>
+              <span class="description">Nově nakažení ({{SelectionList[0]?.data.date | date:'d.M.'}}):</span>
+              <span>
+                <span class="material-icons">addchart</span>
+                <span>{{c.data.rel}}</span>
+              </span>
+            </p>
+          </div>
+          <button mat-raised-button class="forwardButton" (click)="redirectFront(c.data)">
+            <span>Více informací</span>
+          </button>
+        </div>
       </div>
+
     </div>
     <div class="sideSearch">
       <div>
         <div class="sideSearchInputWraper">
-          <input #searchSide class="sideSearchInput" pattern=".+"  type="text" required (keyup.enter)="onEnter(searchSide.value)">
+          <input #searchSide class="sideSearchInput" pattern=".+" type="text" required
+            (keyup.enter)="onEnter(searchSide.value)">
           <label class="sideSearchInputLabel">Název obce</label>
         </div>
 
@@ -59,47 +64,29 @@
   </span>
   <input #search class="input" type="text" autocomplete="off" placeholder="Obec" (keyup.enter)="onEnter(search.value)">
 </div> -->
-<div class="absoluteFooter" *ngIf="Error">
-  <div class="city">
+<div class="absoluteFooter" *ngIf="SelectionList[0]?.err">
+  <div class="city cityFloating">
     <h2>Ouha</h2>
-        <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit. "Mistr Voda"</p>
+    <p>Informace o tomto místu marně hledám, však ty můžeš jiné místo zkusit. "Mistr Voda"</p>
   </div>
 </div>
-<!-- <div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
-  <h2>{{SelectedPosition.name}}</h2>
-  <div class="covidInfo">
-    <p>
-      <span class="material-icons">coronavirus</span>
-      <span>{{SelectedPosition.abs}}</span>
-    </p>
-    <p>
-      <span class="material-icons">addchart</span>
-      <span>+{{SelectedPosition.rel}}</span>
-    </p>
-  </div>
-  <div class="forwardButtonWraper">
-    <button mat-raised-button class="forwardButton" (click)="redirectFront()">
-      <span>Více informací</span>
-    </button>
-  </div>
-</div> -->
-<div class="absoluteFooter" *ngIf="!Error && SelectedPosition">
-  <div class="city">
-    <h2>{{SelectedPosition.name}}</h2>
+<div class="absoluteFooter" *ngIf="!SelectionList[0]?.err && SelectionList[0]?.data">
+  <div class="city cityFloating">
+    <h2>{{SelectionList[0]?.data.name}}</h2>
     <div class="info">
       <p>
         <span class="description">Nakažených celkem:</span>
         <span>
           <span class="material-icons">coronavirus</span>
-          <span>{{SelectedPosition.abs}}</span>
+          <span>{{SelectionList[0]?.data.abs}}</span>
         </span>
       </p>
       <mat-divider></mat-divider>
       <p>
-        <span class="description">Nově nakažení:</span>
+        <span class="description">Nově nakažení ({{SelectionList[0]?.data.date | date:'d.M.'}}):</span>
         <span>
           <span class="material-icons">addchart</span>
-          <span>{{SelectedPosition.rel}}</span>
+          <span>{{SelectionList[0]?.data.rel}}</span>
         </span>
       </p>
     </div>

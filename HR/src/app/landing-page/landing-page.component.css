@@ -5,7 +5,9 @@
     display: flex;
     flex-direction: column;
     color: white;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 1.7rem;
+    box-sizing: border-box;
+    height: 100vh;
 }
 .sideTitle{
     display: flex;
@@ -22,18 +24,30 @@
 }
 .cityList {
     margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    overflow: scroll;
+    padding: .4rem;
+    background: #072735;
+    border: solid #51717f 2px;
+    height: 100%;
+    border-radius: .3rem;
 }
 .city {
     padding: 1rem;
     background: white;
     color: black;
     border-radius: .3rem;
+    margin-bottom: 1rem;
 }
 .city > h2 {
     margin: .5rem 0;
     border-bottom: solid 2px var(--yLight);
     width: fit-content;
     padding: 0 .2rem;
+}
+.cityFloating {
+    padding: .8rem 1.2rem;
+    margin: 0;
 }
 .sideSearch {
     margin-top: auto;

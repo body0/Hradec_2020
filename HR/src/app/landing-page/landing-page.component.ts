@@ -13,6 +13,10 @@ export class LandingPageComponent implements AfterViewInit {
   SelctedPosition: { lat: number, lng: number } = null;
   SelectedPosition = null;
   Error = '';
+  SelectionList: {
+    data: any,
+    err: string
+  }[] = [];
 
   constructor(
     private dataLoaderService: DataLoaderService,
@@ -29,12 +33,15 @@ export class LandingPageComponent implements AfterViewInit {
       let markers = [];
       const myLatlng = { lat: 50.036179154236905, lng: 14.452818238135281 };
       map = new google.maps.Map(this.MapElm.nativeElement, {
-        zoom: 10,
+        zoom: 9,
         center: myLatlng,
         disableDefaultUI: true,
         zoomControl: true,
         streetViewControl: false,
         Fullscreencontrol: false,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.TOP_RIGHT,
+        },
         styles: [
           {
             elementType: 'geometry',
@@ -275,30 +282,33 @@ export class LandingPageComponent implements AfterViewInit {
     // this.initMap();
   }
 
+  addCity(raw) {
+    console.log('x', raw);
+    this.SelectionList.unshift({
+      data: raw,
+      err: ''
+    });
+    if (!raw || raw.error) {
+      this.SelectionList[0].err = 'Cannot get city name';
+    }
+    while (this.SelectionList.length > 5) {
+      this.SelectionList.pop();
+    }
+  }
   async loadData(lat, lng) {
-    this.Error = '';
     try {
       const raw = await this.dataLoaderService.getLocationData(lat, lng);
-      console.log('x', raw);
-      this.SelectedPosition = raw;
-      if (this.SelectedPosition.error) {
-        throw '';
-      }
+      this.addCity(raw);
     } catch (err) {
-      this.Error = 'Cannot get city name';
+      this.SelectionList[0].err = 'Cannot get city name';
     }
   }
   async onEnter(name) {
-    this.Error = '';
     try {
       const raw = await this.dataLoaderService.getDataFromLocation(name);
-      console.log('x', raw);
-      this.SelectedPosition = raw;
-      if (this.SelectedPosition.error) {
-        throw '';
-      }
+      this.addCity(raw);
     } catch (err) {
-      this.Error = 'Cannot get city name';
+      this.SelectionList[0].err = 'Cannot get city name';
     }
   }
 

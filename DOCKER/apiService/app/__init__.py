@@ -150,6 +150,7 @@ def query(name):
 
     curentAbs = caseCurent[len(caseCurent) -1]['abs']
     curentRel = caseCurent[len(caseCurent) -1]['rel']
+    curentDate = caseCurent[len(caseCurent) -1]['date']
     percentCovid = curentAbs / population * 100
 
     percentToCatch = caluculate_risk(population, r_pred, curentAbs)
@@ -159,6 +160,7 @@ def query(name):
         "population": population,
         "abs": curentAbs,
         "rel": curentRel,
+        "date": curentDate,
         "caseCurrent": caseCurent,
         "caseFuture": caseFuture,
         "r": r_pred,
@@ -191,6 +193,11 @@ def init():
 
     try:
         # con = psycopg2.connect(database="covid", user="admin", password="zvikackaJeVecna", host="144.91.111.198", port="5432")
+        # export DB_NAME=covid
+        # export DB_USER=admin
+        # export DB_PASSWORD=zvikackaJeVecna
+        # export DB_HOST=144.91.111.198
+        # export DB_PORT=5432
         con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST , port=DB_PORT)
         print("Database opened successfully!!!")
     except Exception as e:

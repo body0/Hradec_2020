@@ -44,7 +44,7 @@ export class GrafInitComponent implements AfterViewInit {
   async loadData() {
     let data = this.dataLoaderService.getLastLoadedInfo();
     if (!data) {
-      data = await this.dataLoaderService.getDataFromLocation('Brno');
+      data = await this.dataLoaderService.getDataFromLocation('Praha');
     }
 
     if (!data) {
@@ -52,9 +52,9 @@ export class GrafInitComponent implements AfterViewInit {
       return;
     }
     this.Confinig = data;
-    if (this.Confinig.r < 1) {
+    if (this.Confinig.cach < .5) {
       this.WarningColor = '#8cff1a';
-    } else if (this.Confinig.r < 1.2) {
+    } else if (this.Confinig.cach < 2) {
       this.WarningColor = 'var(--yLight)';
     } else {
       this.WarningColor = 'var(--backgroundWarn)';
@@ -123,14 +123,14 @@ export class GrafInitComponent implements AfterViewInit {
     const grafData = [
       ['', '', '', '']
     ];
-    this.Confinig.caseCurrent.forEach(elm => {
+    for (let i = 0; i < this.Confinig.caseCurrent.length - 1; i++) {
+      const elm = this.Confinig.caseCurrent[i];
       const subArr = [this.formatDate(elm.date), null, null, elm.rel];
       grafData.push(subArr);
-    });
-    const firstFuture = this.Confinig.caseFuture[0];
-    // const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
-    grafData.push([this.formatDate(firstFuture.date), firstFuture.neg.rel, firstFuture.opt.rel, firstFuture.opt.rel]);
-    for (let i = 1; i < this.Confinig.caseFuture.length; i++) {
+    }
+    const lastCurent = this.Confinig.caseCurrent[this.Confinig.caseCurrent.length - 1];
+    grafData.push([this.formatDate(lastCurent.date), lastCurent.rel, lastCurent.rel, lastCurent.rel]);
+    for (let i = 0; i < this.Confinig.caseFuture.length; i++) {
       const elm = this.Confinig.caseFuture[i];
       const subArr = [this.formatDate(elm.date), elm.neg.rel, elm.opt.rel, null];
       grafData.push(subArr);
@@ -166,7 +166,8 @@ export class GrafInitComponent implements AfterViewInit {
   }
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
-    return date.getDate() + '.' + date.getMonth() + 1 + '. ';
+    const montPlus =  date.getMonth() + 1;
+    return date.getDate() + '.' + montPlus + '. ';
   }
 
   initMap(position) {
