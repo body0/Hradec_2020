@@ -31,7 +31,12 @@
     border: solid #51717f 2px;
     height: 100%;
     border-radius: .3rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+.cityList::-webkit-scrollbar {
+    display: none;
+  }
 .city {
     padding: 1rem;
     background: white;
